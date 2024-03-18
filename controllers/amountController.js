@@ -30,7 +30,10 @@ const getAllAmount = async (req, res) => {
 };
 
 const getUserAmount = async (req, res) => {
-  const amount = await Amount.find({ user: req.user.userId });
+  const amount = await Amount.find({ user: req.user.userId }).populate({
+    path: 'coin',
+    select: 'coinType invest',
+  });
   res.status(StatusCodes.OK).json({ amount, count: amount.length });
 };
 
