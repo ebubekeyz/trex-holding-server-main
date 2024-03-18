@@ -69,6 +69,9 @@ const getUserPayReceipt = async (req, res) => {
     select: 'amount status',
   });
 
+  res.status(StatusCodes.OK).json({ payReceipt, count: payReceipt.length });
+};
+
 const updatePayReceipt = async (req, res) => {
   const { receipt } = req.body;
   const { id: payReceiptId } = req.params;
