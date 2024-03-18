@@ -43,18 +43,18 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(express.static('./public'));
 app.use(fileUpload({ useTempFiles: true }));
 
-app.use(
-  cors({
-    credentials: true,
-    origin: 'https://trex-holding.netlify.app',
-  })
-);
 // app.use(
 //   cors({
 //     credentials: true,
-//     origin: 'http://localhost:5173',
+//     origin: 'https://trex-holding.netlify.app',
 //   })
 // );
+app.use(
+  cors({
+    credentials: true,
+    origin: 'http://localhost:5173',
+  })
+);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/coin', coinRouter);
 app.use('/api/v1/invest', investRouter);
