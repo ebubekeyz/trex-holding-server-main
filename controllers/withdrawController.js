@@ -23,11 +23,6 @@ const createWithdraw = async (req, res) => {
     walletAddress,
   } = withdraw;
 
-  const chargePercentage = (charge * 10) / 100;
-  const mainAmount = amount - chargePercentage;
-  await withdraw.save();
-
-  console.log(charge);
   console.log(amount);
 
   // const fullName = await Withdraw.findOneAndRemove({ user: req.user.fullName });
@@ -82,20 +77,14 @@ const createWithdraw = async (req, res) => {
     <p>${accountNumber}</p>
     </article>
 
-      <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Amount: </span>
-    <p>${mainAmount}</p>
-    </article>
+     
 
       <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
     <span style="font-weight: bold">Withdrawal Code: </span>
     <p>${withdrawalCode}</p>
     </article>
 
-      <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Charge: </span>
-    <p>${chargePercentage}</p>
-    </article>
+    
 
     <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
     <span style="font-weight: bold">Status: </span>
@@ -114,9 +103,7 @@ const createWithdraw = async (req, res) => {
     </div>`,
   });
 
-  res
-    .status(StatusCodes.CREATED)
-    .json({ withdraw, chargePercentage, mainAmount });
+  res.status(StatusCodes.CREATED).json({ withdraw });
 };
 
 const getAllWithdraw = async (req, res) => {

@@ -5,13 +5,11 @@ const WithdrawSchema = new mongoose.Schema(
   {
     withdrawalMethod: {
       type: String,
-      required: true,
     },
     amount: {
       type: Number,
-      min: 5000,
-      max: 100000,
-      required: [true, 'Withdrawal amount should be within 5000 to 100000'],
+      min: [5000, 'Amount should not be less than 5000'],
+      max: [100000, 'Amount should not be more than 100000'],
     },
     bankName: {
       type: String,
@@ -32,7 +30,6 @@ const WithdrawSchema = new mongoose.Schema(
     charge: {
       type: Number,
       default: 0,
-      required: true,
     },
     status: {
       type: String,
