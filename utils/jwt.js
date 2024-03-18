@@ -15,24 +15,24 @@ const attachCookiesToResponse = ({ res, user }) => {
 
   const oneDay = 1000 * 60 * 60 * 24;
 
+  //   res.cookie('token', token, {
+  //     httpOnly: true,
+  //     expires: new Date(Date.now() + oneDay),
+  //     secure: process.env.NODE_ENV === 'production',
+  //     signed: true,
+  //     sameSite: 'Lax',
+  //   });
+  // };
+
   res.cookie('token', token, {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
     secure: process.env.NODE_ENV === 'production',
+    domain: 'trex-holding-server-main.onrender.com',
     signed: true,
-    sameSite: 'Lax',
+    sameSite: 'None',
   });
 };
-
-//   res.cookie('token', token, {
-//     httpOnly: true,
-//     expires: new Date(Date.now() + oneDay),
-//     secure: process.env.NODE_ENV === 'production',
-//     domain: 'trex-holding-server-main.onrender.com',
-//     signed: true,
-//     sameSite: 'None',
-//   });
-// };
 
 module.exports = {
   createJWT,
