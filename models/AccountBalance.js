@@ -4,6 +4,7 @@ const AccountBalanceSchema = new mongoose.Schema(
   {
     balance: {
       type: Number,
+      min: 50000,
       required: true,
     },
 

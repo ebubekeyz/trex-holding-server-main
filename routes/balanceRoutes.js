@@ -12,6 +12,7 @@ const {
   getAllBalance,
   getUserBalance,
   getSingleBalance,
+  updateBalance,
 } = require('../controllers/accountBalanceController');
 
 router
@@ -19,6 +20,9 @@ router
   .get([authenticateUser], getAllBalance)
   .post([authenticateUser], createBalance);
 router.route('/showUserBalance').get(authenticateUser, getUserBalance);
-router.route('/:id').get([authenticateUser], getSingleBalance);
+router
+  .route('/:id')
+  .get([authenticateUser], getSingleBalance)
+  .patch(authenticateUser, updateBalance);
 
 module.exports = router;
