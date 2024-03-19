@@ -17,6 +17,7 @@ const authenticateUser = async (req, res, next) => {
       country,
       email,
       phone,
+      referralId,
       userId,
       role,
     } = isTokenValid({ token });
@@ -28,6 +29,7 @@ const authenticateUser = async (req, res, next) => {
       state,
       country,
       email,
+      referralId,
       phone,
       userId,
       role,

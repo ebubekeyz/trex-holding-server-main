@@ -17,6 +17,7 @@ const register = async (req, res) => {
     city,
     zip,
     state,
+    referralId,
   } = req.body;
   const emailAlreadyExist = await User.findOne({ email });
   if (emailAlreadyExist) {
@@ -37,6 +38,7 @@ const register = async (req, res) => {
     city,
     zip,
     state,
+    referralId,
   });
 
   const tokenUser = createTokenUser(user);

@@ -8,6 +8,7 @@ const createTokenUser = (user) => {
     zip: user.zip,
     state: user.state,
     phone: user.phone,
+    referralId: user.referralId,
     userId: user._id,
     role: user.role,
   };

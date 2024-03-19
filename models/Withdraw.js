@@ -8,8 +8,8 @@ const WithdrawSchema = new mongoose.Schema(
     },
     amount: {
       type: Number,
-      min: [5000, 'Amount should not be less than 5000'],
-      max: [100000, 'Amount should not be more than 100000'],
+      min: [0, 'Amount should not be less than 0'],
+      max: [59999, 'Amount should not be more than 59999'],
     },
     bankName: {
       type: String,

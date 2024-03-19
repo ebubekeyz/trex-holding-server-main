@@ -40,6 +40,9 @@ const UserSchema = new mongoose.Schema(
       required: [true, 'Password length should not be less than 6'],
       minlength: 6,
     },
+    referralId: {
+      type: String,
+    },
     bitcoinAddress: {
       type: String,
     },
