@@ -60,11 +60,18 @@ const deleteDeposit = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'deposit successfully deleted' });
 };
 
+const deleteAllDeposit = async (req, res) => {
+  const deposit = await Deposit.deleteMany();
+
+  res.status(StatusCodes.OK).json({ msg: 'Deposit successfully deleted' });
+};
+
 module.exports = {
   createDeposit,
   getAllDeposit,
   getUserDeposit,
   updateDeposit,
   getSingleDeposit,
+  deleteAllDeposit,
   deleteDeposit,
 };

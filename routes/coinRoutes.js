@@ -8,13 +8,15 @@ const {
   getUserCoin,
   deleteCoin,
   getSingleInvestCoin,
+  deleteAllCoin,
 } = require('../controllers/coinController');
 
 router
   .route('/')
   .post(authenticateUser, createCoin)
   .get(authenticateUser, getAllCoin)
-  .get(authenticateUser, getUserCoin);
+  .get(authenticateUser, getUserCoin)
+  .delete(authenticateUser, deleteAllCoin);
 router
   .route('/:id')
   .get(authenticateUser, getSingleCoin)

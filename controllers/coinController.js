@@ -73,6 +73,12 @@ const deleteCoin = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'Success, coin removed' });
 };
 
+const deleteAllCoin = async (req, res) => {
+  const coin = await Coin.deleteMany();
+
+  res.status(StatusCodes.OK).json({ msg: 'Coin successfully deleted' });
+};
+
 module.exports = {
   createCoin,
   getAllCoin,
@@ -80,4 +86,5 @@ module.exports = {
   getUserCoin,
   deleteCoin,
   getSingleInvestCoin,
+  deleteAllCoin,
 };

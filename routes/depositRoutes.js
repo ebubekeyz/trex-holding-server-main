@@ -14,12 +14,14 @@ const {
   updateDeposit,
   deleteDeposit,
   getUserDeposit,
+  deleteAllDeposit,
 } = require('../controllers/depositController');
 
 router
   .route('/')
   .get([authenticateUser], getAllDeposit)
-  .post([authenticateUser], createDeposit);
+  .post([authenticateUser], createDeposit)
+  .delete(authenticateUser, deleteAllDeposit);
 router.route('/showUserDeposit').get(authenticateUser, getUserDeposit);
 router
   .route('/:id')

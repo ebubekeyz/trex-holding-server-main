@@ -13,12 +13,14 @@ const {
   getUserBalance,
   getSingleBalance,
   updateBalance,
+  deleteBalance,
 } = require('../controllers/accountBalanceController');
 
 router
   .route('/')
   .get([authenticateUser], getAllBalance)
-  .post([authenticateUser], createBalance);
+  .post([authenticateUser], createBalance)
+  .delete(authenticateUser, deleteBalance);
 router.route('/showUserBalance').get(authenticateUser, getUserBalance);
 router
   .route('/:id')

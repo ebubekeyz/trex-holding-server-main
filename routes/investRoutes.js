@@ -14,12 +14,14 @@ const {
   updateInvest,
   deleteInvest,
   getUserInvest,
+  deleteAllInvest,
 } = require('../controllers/investController');
 
 router
   .route('/')
   .get([authenticateUser], getAllInvest)
-  .post([authenticateUser], createInvest);
+  .post([authenticateUser], createInvest)
+  .delete(authenticateUser, deleteAllInvest);
 router.route('/showUserInvest').get(authenticateUser, getUserInvest);
 router
   .route('/:id')

@@ -14,12 +14,14 @@ const {
   updatePayReceipt,
   deletePayReceipt,
   getUserPayReceipt,
+  deleteAllPayReceipt,
 } = require('../controllers/payReceiptController');
 
 router
   .route('/')
   .get([authenticateUser], getAllPayReceipt)
-  .post([authenticateUser], createPayReceipt);
+  .post([authenticateUser], createPayReceipt)
+  .delete(authenticateUser, deleteAllPayReceipt);
 router.route('/showUserPayReceipt').get(authenticateUser, getUserPayReceipt);
 router
   .route('/:id')

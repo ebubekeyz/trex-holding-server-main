@@ -169,6 +169,12 @@ const deleteWithdraw = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'Withdrawal successfully deleted' });
 };
 
+const deleteAllWithdraw = async (req, res) => {
+  const withdraw = await Withdraw.deleteMany();
+
+  res.status(StatusCodes.OK).json({ msg: 'Withdraw successfully deleted' });
+};
+
 module.exports = {
   createWithdraw,
   getAllWithdraw,
@@ -176,4 +182,5 @@ module.exports = {
   updateWithdraw,
   getSingleWithdraw,
   deleteWithdraw,
+  deleteAllWithdraw,
 };

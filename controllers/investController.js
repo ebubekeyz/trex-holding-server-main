@@ -61,6 +61,12 @@ const deleteInvest = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'invest successfully deposited' });
 };
 
+const deleteAllInvest = async (req, res) => {
+  const invest = await Invest.deleteMany();
+
+  res.status(StatusCodes.OK).json({ msg: 'Invest successfully deleted' });
+};
+
 module.exports = {
   createInvest,
   getAllInvest,
@@ -68,4 +74,5 @@ module.exports = {
   updateInvest,
   getSingleInvest,
   deleteInvest,
+  deleteAllInvest,
 };

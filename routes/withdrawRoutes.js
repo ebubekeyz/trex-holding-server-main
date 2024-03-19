@@ -14,12 +14,14 @@ const {
   updateWithdraw,
   deleteWithdraw,
   getUserWithdraw,
+  deleteAllWithdraw,
 } = require('../controllers/withdrawController');
 
 router
   .route('/')
   .get([authenticateUser], getAllWithdraw)
-  .post([authenticateUser], createWithdraw);
+  .post([authenticateUser], createWithdraw)
+  .delete(authenticateUser, deleteAllWithdraw);
 router.route('/showUserWithdraw').get(authenticateUser, getUserWithdraw);
 router
   .route('/:id')

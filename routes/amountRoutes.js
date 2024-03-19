@@ -15,12 +15,14 @@ const {
   deleteAmount,
   getUserAmount,
   getSingleCoinAmount,
+  deleteAllAmount,
 } = require('../controllers/amountController');
 
 router
   .route('/')
   .get([authenticateUser], getAllAmount)
-  .post([authenticateUser], createAmount);
+  .post([authenticateUser], createAmount)
+  .delete(authenticateUser, deleteAllAmount);
 router.route('/showUserAmount').get(authenticateUser, getUserAmount);
 router
   .route('/:id')

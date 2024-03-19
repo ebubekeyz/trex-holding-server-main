@@ -48,10 +48,17 @@ const getSingleBalance = async (req, res) => {
   res.status(StatusCodes.OK).json({ balance });
 };
 
+const deleteBalance = async (req, res) => {
+  const balance = await AccountBalance.deleteMany();
+
+  res.status(StatusCodes.OK).json({ msg: 'Balance successfully deleted' });
+};
+
 module.exports = {
   createBalance,
   getAllBalance,
   getUserBalance,
   updateBalance,
   getSingleBalance,
+  deleteBalance,
 };
