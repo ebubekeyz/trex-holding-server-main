@@ -13,9 +13,6 @@ const createWithdraw = async (req, res) => {
   const {
     withdrawalMethod,
     amount,
-    bankName,
-    accountName,
-    accountNumber,
     withdrawalCode,
     charge,
     status,
@@ -62,23 +59,6 @@ const createWithdraw = async (req, res) => {
     <p>${amount}</p>
     </article>
 
-     <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Bank Name: </span>
-    <p>${bankName}</p>
-    </article>
-
-      <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Account Name: </span>
-    <p>${accountName}</p>
-    </article>
-
-     <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Account Number: </span>
-    <p>${accountNumber}</p>
-    </article>
-
-     
-
       <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
     <span style="font-weight: bold">Withdrawal Code: </span>
     <p>${withdrawalCode}</p>
@@ -111,9 +91,6 @@ const getAllWithdraw = async (req, res) => {
   let {
     withdrawalMethod,
     amount,
-    bankName,
-    accountName,
-    accountNumber,
     withdrawalCode,
     charge,
     status,

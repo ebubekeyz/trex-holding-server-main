@@ -32,11 +32,11 @@ const InvestSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-InvestSchema.pre('save', async function (next) {
-  this.profit = ((this.amount * this.percent) / 100) * this.days;
-  this.dailyProfit = (this.amount * this.percent) / 100;
-  this.total = this.profit + this.amount;
-  next();
-});
+// InvestSchema.pre('save', async function (next) {
+//   this.profit = ((this.amount * this.percent) / 100) * this.days;
+//   this.dailyProfit = (this.amount * this.percent) / 100;
+//   this.total = this.profit + this.amount;
+//   next();
+// });
 
 module.exports = mongoose.model('Invest', InvestSchema);

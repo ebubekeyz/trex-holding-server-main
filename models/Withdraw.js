@@ -11,15 +11,7 @@ const WithdrawSchema = new mongoose.Schema(
       min: [0, 'Amount should not be less than 0'],
       max: [59999, 'Amount should not be more than 59999'],
     },
-    bankName: {
-      type: String,
-    },
-    accountName: {
-      type: String,
-    },
-    accountNumber: {
-      type: Number,
-    },
+
     withdrawalCode: {
       type: String,
       default: uuidv4(),
