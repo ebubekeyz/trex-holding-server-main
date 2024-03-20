@@ -6,6 +6,11 @@ const PayReceiptSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      enum: ['pending', 'paid'],
+      default: 'pending',
+    },
     amount: {
       type: mongoose.Types.ObjectId,
       ref: 'Amount',

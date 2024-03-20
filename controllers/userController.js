@@ -29,12 +29,18 @@ const showCurrentUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user: req.user });
 };
 
+const getRefId = async (req, res) => {
+  const user = await User.find({ user: req.user.referralId });
+  res.status(StatusCodes.OK).json({ user });
+};
+
 const updateUser = async (req, res) => {
   const {
     fullName,
     username,
     phone,
     country,
+    getRefId,
     city,
     zip,
     state,
@@ -125,4 +131,5 @@ module.exports = {
   updateUser,
   updateUserPassword,
   deleteUser,
+  getRefId,
 };

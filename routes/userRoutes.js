@@ -12,6 +12,7 @@ const {
   updateUser,
   updateUserPassword,
   deleteUser,
+  getRefId,
 } = require('../controllers/userController');
 
 router
@@ -24,6 +25,7 @@ router
 router.route('/showMe').get(authenticateUser, showCurrentUser);
 // router.route('/updateUser').patch(authenticateUser, updateUser);
 router.route('/updateUserPassword').patch(authenticateUser, updateUserPassword);
+router.route('/refId').get(authenticateUser, getRefId);
 router
   .route('/:id')
   .get(authenticateUser, getSingleUser)

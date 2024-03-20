@@ -82,7 +82,7 @@ const login = async (req, res) => {
 // };
 
 const logout = async (req, res) => {
-  res.cookie('token', 'logout', {
+  res.cookie('token', 'none', {
     httpOnly: true,
     expires: new Date(Date.now()),
   });
