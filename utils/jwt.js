@@ -28,9 +28,9 @@ const attachCookiesToResponse = ({ res, user }) => {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
     secure: process.env.NODE_ENV === 'production',
-    domain: 'https://trex-holding.com',
+    domain: 'https://trex-holding-server.com',
     signed: true,
-    sameSite: 'Lax',
+    sameSite: 'None',
     path: '/',
   });
 };
