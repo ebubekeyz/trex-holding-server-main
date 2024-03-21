@@ -14,7 +14,6 @@ const createWithdraw = async (req, res) => {
     withdrawalMethod,
     amount,
     withdrawalCode,
-    charge,
     status,
     currentBalance,
     walletAddress,
@@ -88,14 +87,8 @@ const createWithdraw = async (req, res) => {
 
 const getAllWithdraw = async (req, res) => {
   const withdraw = await Withdraw.find({});
-  let {
-    withdrawalMethod,
-    amount,
-    withdrawalCode,
-    charge,
-    status,
-    currentBalance,
-  } = withdraw;
+  let { withdrawalMethod, amount, withdrawalCode, status, currentBalance } =
+    withdraw;
 
   res.status(StatusCodes.OK).json({ withdraw, count: withdraw.length });
 };

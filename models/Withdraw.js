@@ -19,10 +19,7 @@ const WithdrawSchema = new mongoose.Schema(
     walletAddress: {
       type: String,
     },
-    charge: {
-      type: Number,
-      default: 0,
-    },
+
     status: {
       type: String,
       enum: ['processing', 'sent'],
