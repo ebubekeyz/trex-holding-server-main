@@ -82,9 +82,11 @@ const login = async (req, res) => {
 // };
 
 const logout = async (req, res) => {
-  res.cookie('token', 'none', {
-    httpOnly: false,
+  res.cookie('token', 'logout', {
+    httpOnly: true,
     expires: new Date(Date.now()),
+    sameSite: 'None',
+    domain: 'trex-holding-server.com',
   });
   res.status(StatusCodes.OK).json({ msg: 'user logged out' });
 };
