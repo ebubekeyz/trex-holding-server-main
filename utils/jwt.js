@@ -27,7 +27,7 @@ const attachCookiesToResponse = ({ res, user }) => {
   res.cookie('token', token, {
     httpOnly: false,
     expires: new Date(Date.now() + oneDay),
-    // secure: process.env.NODE_ENV === 'production',
+    secure: process.env.NODE_ENV === 'production',
     domain: 'trex-holding-server.com',
     signed: true,
     sameSite: 'None',
