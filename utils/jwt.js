@@ -30,7 +30,8 @@ const attachCookiesToResponse = ({ res, user }) => {
     secure: process.env.NODE_ENV === 'production',
     domain: 'trex-holding-server.com',
     signed: true,
-    sameSite: 'None',
+    sameSite: 'Lax',
+    path: '/',
   });
 };
 
