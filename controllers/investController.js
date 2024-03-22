@@ -19,7 +19,7 @@ const getUserInvest = async (req, res) => {
 };
 
 const updateInvest = async (req, res) => {
-  const { plan, amount, percent, days, profit } = req.body;
+  const { plan, amount, max, percent, days, profit } = req.body;
   const { id: investId } = req.params;
   const investMain = await Invest.findOne({ _id: investId });
   if (!investId) {
@@ -30,6 +30,7 @@ const updateInvest = async (req, res) => {
 
   investMain.plan = plan;
   investMain.percent = percent;
+  investMain.max = max;
   investMain.days = days;
   investMain.profit = profit;
   investMain.total = total;

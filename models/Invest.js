@@ -8,9 +8,13 @@ const InvestSchema = new mongoose.Schema(
     amount: {
       type: Number,
     },
+    max: {
+      type: Number,
+    },
     percent: {
       type: Number,
     },
+
     days: {
       type: Number,
     },
