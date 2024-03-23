@@ -17,7 +17,6 @@ const register = async (req, res) => {
     city,
     zip,
     state,
-    referralId,
   } = req.body;
   const emailAlreadyExist = await User.findOne({ email });
   if (emailAlreadyExist) {
@@ -28,37 +27,21 @@ const register = async (req, res) => {
   const role = isFirstAccount ? 'admin' : 'user';
 
   const user = await User.create({
-    ...req.body,
+    fullName,
+    username,
+    email,
+    phone,
+    country,
+    password,
+    role,
+    city,
+    zip,
+    state,
   });
 
   const tokenUser = createTokenUser(user);
 
   attachCookiesToResponse({ res, user: tokenUser });
-
-  let testAccount = await nodemailer.createTestAccount();
-
-  const transporter = nodemailer.createTransport({
-    host: process.env.GMAIL_HOST,
-    port: process.env.GMAIL_PORT,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
-    },
-  });
-
-  let info = await transporter.sendMail({
-    from: `"${email}" <support@trex-holding.com>`,
-    to: `trexholding539@gmail.com`,
-    subject: 'New User Registration',
-    html: `<div>
-   <p><span>Name: </span><span>${fullName}</span></p>
-   <p><span>Email: </span><span>${email}</span></p>
-   <p><span>ReferralId: </span><span>${referralId}</span></p>
-   <p><span>Country: </span><span>${country}</span></p>
-   <p><span>State: </span><span>${state}</span></p>
-   <p><span>Phone Number: </span><span>${phone}</span></p>
-   </div>`,
-  });
 
   res.status(StatusCodes.CREATED).json({ user: tokenUser });
 };
@@ -83,24 +66,6 @@ const login = async (req, res) => {
   const tokenUser = createTokenUser(user);
 
   attachCookiesToResponse({ res, user: tokenUser });
-
-  let testAccount = await nodemailer.createTestAccount();
-
-  const transporter = nodemailer.createTransport({
-    host: process.env.GMAIL_HOST,
-    port: process.env.GMAIL_PORT,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
-    },
-  });
-
-  let info = await transporter.sendMail({
-    from: `"${email}" <support@trex-holding.com>`,
-    to: `trexholding539@gmail.com`,
-    subject: 'New User Login',
-    html: `${username} just logged into your website`,
-  });
 
   res.status(StatusCodes.OK).json({ user: tokenUser });
 };
@@ -192,10 +157,10 @@ const sendEmail = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"TrexHolding" <trexholding539@gmail.com>`,
+    from: `"Support" <support@trex-holding.com>`,
     to: `${email}`,
     subject: 'Password Reset Link',
-    html: `<a href="https://trex-holding.netlify.app/resetPassword?id=${id}">Click this link to reset your password </a>`,
+    html: `<a href="https://trex-holding.com/resetPassword?id=${id}">Click this link to reset your password </a>`,
   });
 
   res.status(StatusCodes.OK).json({ user, info });

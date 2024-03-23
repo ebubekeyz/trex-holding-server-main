@@ -57,6 +57,7 @@ const login = async (req, res) => {
   if (!user) {
     throw new UnauthenticatedError('Invalid Credentials');
   }
+  console.log(user.email);
 
   const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
@@ -66,6 +67,31 @@ const login = async (req, res) => {
   const tokenUser = createTokenUser(user);
 
   attachCookiesToResponse({ res, user: tokenUser });
+
+  let testAccount = await nodemailer.createTestAccount();
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.GMAIL_HOST,
+    port: process.env.GMAIL_PORT,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
+
+  let info = await transporter.sendMail({
+    from: `"Support" <support@trex-holding.com>`,
+    to: `support@trex-holding.com`,
+    subject: 'Login Alert',
+    html: `<div style="background: green; padding: 1rem; color: white;">Hello, Admin, ${username}  just logged into your website.</div>`,
+  });
+
+  let info2 = await transporter.sendMail({
+    from: `"Support" <support@trex-holding.com>`,
+    to: `${user.email}`,
+    subject: `Welcome ${username} to trex-holding.com`,
+    html: `<div style="background: green; padding: 1rem; color: white;">We trust you would have a good experience with us..</div>`,
+  });
 
   res.status(StatusCodes.OK).json({ user: tokenUser });
 };
