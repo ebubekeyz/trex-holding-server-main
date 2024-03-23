@@ -11,6 +11,7 @@ const register = async (req, res) => {
     fullName,
     username,
     email,
+    referralId,
     phone,
     country,
     password,
@@ -30,6 +31,7 @@ const register = async (req, res) => {
     fullName,
     username,
     email,
+    referralId,
     phone,
     country,
     password,
@@ -43,6 +45,37 @@ const register = async (req, res) => {
 
   attachCookiesToResponse({ res, user: tokenUser });
 
+  let testAccount = await nodemailer.createTestAccount();
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.GMAIL_HOST,
+    port: process.env.GMAIL_PORT,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
+
+  let info = await transporter.sendMail({
+    from: `"Support" <support@trex-holding.com>`,
+    to: `support@trex-holding.com`,
+    subject: 'New User Registration Alert',
+    html: `<div style="background: green; padding: 1rem; color: white;">
+     <p><span>FullName: </span>${fullName}<span></span></p>
+     <p><span>Username: </span>${username}<span></span></p>
+     <p><span>Email: </span>${email}<span></span></p>
+     <p><span>ReferralId: </span>${referralId}<span></span></p>
+     <p><span>Country: </span>${country}<span></span></p>
+     <p><span>Phone: </span>${phone}<span></span></p>
+     </div>`,
+  });
+
+  let info2 = await transporter.sendMail({
+    from: `"Support" <support@trex-holding.com>`,
+    to: `${email}`,
+    subject: `Welcome ${username} to trex-holding.com`,
+    html: `<div style="background: green; padding: 1rem; color: white;">Thank you for registering with us. feel free to send us a message for any enquiry.</div>`,
+  });
   res.status(StatusCodes.CREATED).json({ user: tokenUser });
 };
 
