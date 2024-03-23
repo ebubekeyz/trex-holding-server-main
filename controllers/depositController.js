@@ -3,9 +3,12 @@ const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
 const { checkPermissions } = require('../utils');
 
+const nodemailer = require('nodemailer');
+
 const createDeposit = async (req, res) => {
   req.body.user = req.user.userId;
   const deposit = await Deposit.create(req.body);
+
   res.status(StatusCodes.CREATED).json({ deposit });
 };
 

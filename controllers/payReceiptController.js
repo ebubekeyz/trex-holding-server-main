@@ -1,5 +1,7 @@
 const PayReceipt = require('../models/PayReceipt');
 const Amount = require('../models/Amount');
+const Coin = require('../models/Coin');
+const Invest = require('../models/Invest');
 const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
 const nodemailer = require('nodemailer');
@@ -17,13 +19,20 @@ const createPayReceipt = async (req, res) => {
 
   const amount = await Amount.find({ user: req.user.userId });
 
-  let { status, _id: amountId2 } = amount[amount.length - 1];
+  let { status, _id: amountId2, amount: amt } = amount[amount.length - 1];
   console.log(status, amountId2);
   const handleAmount = () => {
     status = 'confirmed';
   };
 
-  const { receipt } = payReceipt;
+  const coin = await Coin.find({ user: req.user.userId });
+
+  let { coinType } = coin[coin.length - 1];
+  const invest = await Invest.find({ user: req.user.userId });
+
+  let { plan } = invest[invest.length - 1];
+
+  const { status: stat, receipt } = payReceipt;
 
   const email = req.user.email;
   const fullName = req.user.fullName;
@@ -40,12 +49,39 @@ const createPayReceipt = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"${fullName}" <${email}>`,
-    to: `trexholding539@gmail.com`,
-    subject: `PAYMENT RECEIPT FROM ${fullName}`,
-    html: `<div><img src="https://trex-holding.onrender.com/${receipt}" style="width:12rem; height:12rem; object-fit:contain; " /></div>`,
+    from: `"Support" <support@trex-holding.com>`,
+    to: `support@trex-holding.com`,
+    subject: `Payment Request from ${fullName}`,
+    html: `
+    <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto; width: 80vw;">
+    
+     <p ><span  style="font-weight: bold;">Status: </span><span>${stat}</span></p>
+     <p><span style="font-weight: bold;">Receipt: </span><span><img src="https://trex-holding.onrender.com/${receipt}" style="width:5rem;object-fit:contain; " /></span></p>
+
+       <p><span style="font-weight: bold">Amount: </span><span>€${amt}</span></p>
+        <p><span style="font-weight: bold">Plan: </span><span>${plan}</span></p>
+        <p><span style="font-weight: bold">Coin: </span><span>${coinType}</span></p>
+
+    
+
+       <p style="font-weight: bold">Visit your Dashboard to approve Request</p>
+     </div>`,
   });
 
+  let info2 = await transporter.sendMail({
+    from: `"Support" <support@trex-holding.com>`,
+    to: `${email}`,
+    subject: `Payment Sent`,
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+
+    <img src="https://trex-holding-server.com//uploads/logo.png" style="height: 45px; text-align: center" alt="logo"/>
+
+    <p style="line-height: 1.5">Your Payment was successfully sent and awaits approval. Your balance will reflect immediately after approval is done and you will get your interest at due date.</p>
+
+    <P style="line-height: 1.5">Best Regards</P>
+    <P style="line-height: 1.5">Trex-Holding Team</P>
+    </div>`,
+  });
   res.status(StatusCodes.CREATED).json({ payReceipt });
 };
 

@@ -5,6 +5,7 @@ const createTokenUser = (user) => {
     country: user.country,
     email: user.email,
     city: user.city,
+    status: user.status,
     zip: user.zip,
     state: user.state,
     phone: user.phone,

@@ -40,34 +40,12 @@ const UserSchema = new mongoose.Schema(
       required: [true, 'Password length should not be less than 6'],
       minlength: 6,
     },
+    status: {
+      type: String,
+      enum: ['unverified', 'verified'],
+      default: 'unverified',
+    },
     referralId: {
-      type: String,
-    },
-    bitcoinAddress: {
-      type: String,
-    },
-    etherumAddress: {
-      type: String,
-    },
-    usdtTrc2Address: {
-      type: String,
-    },
-    bitcoinCashAddress: {
-      type: String,
-    },
-    liteCoinAddress: {
-      type: String,
-    },
-    bnbAddress: {
-      type: String,
-    },
-    tronAddress: {
-      type: String,
-    },
-    xrpAddress: {
-      type: String,
-    },
-    dogeCoinAddress: {
       type: String,
     },
     role: {

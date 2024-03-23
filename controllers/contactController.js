@@ -25,16 +25,6 @@ const sendMessage = async (req, res) => {
     throw new CustomError.BadRequestError('No input should be left blank');
   }
 
-  //   const contact = await Contact.findOne({ email });
-
-  //   const id = contact._id;
-  //   name = contact.name;
-  //   email = contact.email;
-  //   enquiryType = contact.enquiryType;
-  //   enquiryDescription = contact.enquiryDescription;
-
-  //   console.log(name, email, enquiryType, enquiryDescription);
-
   let testAccount = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
@@ -47,10 +37,31 @@ const sendMessage = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"${name}" <${email}>`,
-    to: `ebubeofforjoe@gmail.com`,
-    subject: `${enquiryType}`,
-    html: `<p>${enquiryDescription} </p>`,
+    from: `"Support" <support@trex-holding.com>`,
+    to: `support@trex-holding.com`,
+    subject: `New Message from ${name}`,
+    html: `
+    <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+     <p style="line-height: 1.5"><span>Name: </span><span>${name}</span></p>
+    
+
+       <p style="line-height: 1.5"><span>Email: </span><span>${email}</span></p>
+
+       <p style="line-height: 1.5"><span>Enquiry Type: </span><span>${enquiryType}</span></p>
+
+       <p style="line-height: 1.5"><span>Enquiry Description: </span><span>${enquiryDescription}</span></p>
+     </div>`,
+  });
+
+  let info2 = await transporter.sendMail({
+    from: `"Support" <support@trex-holding.com>`,
+    to: `${email}`,
+    subject: `Thank you for contacting us.`,
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+
+    <p style="line-height: 1.5">Our Support team will get back to you in less than 24 hours.</p>
+
+    </div>`,
   });
 
   res.status(StatusCodes.OK).json({ info });

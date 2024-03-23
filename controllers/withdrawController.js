@@ -38,47 +38,34 @@ const createWithdraw = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"${fullName}" <${email}>`,
-    to: `Trexholding539@gmail.com`,
-    subject: 'Withdrawal Request',
-    html: `<div display: grid, grid-template-columns: 1fr; justify-content: center;>
-
-     <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Name: </span>
-    <p>${fullName}</p>
-    </article>
-
-      <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Withdrawal Method: </span>
-    <p>${withdrawalMethod}</p>
-    </article>
-
-     <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Amount: </span>
-    <p>${amount}</p>
-    </article>
-
-      <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Withdrawal Code: </span>
-    <p>${withdrawalCode}</p>
-    </article>
-
+    from: `"Support" <support@trex-holding.com>`,
+    to: `support@trex-holding.com`,
+    subject: `Withdrawal Request from ${req.user.username}`,
+    html: `
+    <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+     <p style="line-height: 1.5"><span>Status: </span><span>${status}</span></p>
     
 
-    <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Status: </span>
-    <p>${status}</p>
-    </article>
+       <p style="line-height: 1.5"><span>withdrawalMethod: </span><span>${withdrawalMethod}</span></p>
 
-     <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">WalletAddress: </span>
-    <p>${walletAddress}</p>
-    </article>
+       <p style="line-height: 1.5"><span>Amount: </span><span>${amount}</span></p>
 
-     <article style="display: grid; justify-content: center; grid-template-columns: 1fr 1fr; align-self: center; gap: 2rem;">
-    <span style="font-weight: bold">Current Balance: </span>
-      <p>${currentBalance}</p>
-    </article>
+       <p style="line-height: 1.5"><span>Wallet Address: </span><span>${walletAddress}</span></p>
+
+       p style="line-height: 1.5">Visit your Dashboard to approve Request</p>
+     </div>`,
+  });
+
+  let info2 = await transporter.sendMail({
+    from: `"Support" <support@trex-holding.com>`,
+    to: `${email}`,
+    subject: `Withdrawal Request Sent`,
+    html: `<div style="background: green; padding: 1rem; color: white;">
+
+    <p style="line-height: 1.5">Your withdrawal Request was successfully sent. Payment may take 15 minutes to process.</p>
+
+    <P style="line-height: 1.5">Best Regards</P>
+    <P style="line-height: 1.5">Trex-Holding Team</P>
     </div>`,
   });
 
