@@ -73,8 +73,27 @@ const register = async (req, res) => {
   let info2 = await transporter.sendMail({
     from: `"Support" <support@trex-holding.com>`,
     to: `${email}`,
-    subject: `Welcome ${username} to trex-holding.com`,
-    html: `<div style="background: green; padding: 1rem; color: white;">Thank you for registering with us. feel free to send us a message for any enquiry.</div>`,
+    subject: `Welcome to Trex-Holding.com`,
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+
+    <img src="https://trex-holding-server.com//uploads/logo.png" style="height: 45px; text-align: center" alt="logo"/>
+
+    <p style="font-weight: bold; line-height: 1.5">Welcome to Trex-Holding!</p>
+
+    <p style="font-weight: bold; line-height: 1.5">Dear ${username}</p>
+
+    <p style="line-height: 1.5">We are thrilled to welcome you to Trex-Holding, the leading platform for simplified and efficient trading. Thank you for choosing us to embark on your investment journey!</p>
+
+    <p style="line-height: 1.5">At Trex-Holding, We understand that navigating the financial markets can sometimes be overwhelming, especially for new Investors. That's why we have developed a user-friendly and intuitive platform designed to simplify the trading process and empower traders of all levels.</p>
+
+    <p style="line-height: 1.5">If you have any questions or need assistance, please don't hesitate to reach out to our support team. We are here to help you.<p>
+
+    <p style="line-height: 1.5">Once again, welcome to Trex-Holding! We look forward to being a part of your Investment success.</p>
+
+    <p style="line-height: 1.5">Best Regards,</p>
+    <p style="line-height: 1.5">The Trex-Holding Team</p>
+
+    </div>`,
   });
   res.status(StatusCodes.CREATED).json({ user: tokenUser });
 };
