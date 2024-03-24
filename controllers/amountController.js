@@ -44,7 +44,7 @@ const getSingleCoinAmount = async (req, res) => {
 };
 
 const updateAmount = async (req, res) => {
-  const { status } = req.body;
+  const { bonus, amount } = req.body;
   const { id: amountId } = req.params;
   const amountMain = await Amount.findOne({ _id: amountId });
   if (!amountId) {
@@ -53,7 +53,8 @@ const updateAmount = async (req, res) => {
     );
   }
 
-  amountMain.status = status;
+  amountMain.bonus = bonus;
+  amountMain.amount = amount;
 
   await amountMain.save();
   res.status(StatusCodes.OK).json({ msg: 'Amount successfully deposited' });

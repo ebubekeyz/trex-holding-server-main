@@ -67,8 +67,20 @@ const sendMessage = async (req, res) => {
   res.status(StatusCodes.OK).json({ info });
 };
 
+const deleteContact = async (req, res) => {
+  const { id: contactId } = req.params;
+  const contact = await Contact.findByIdAndRemove({ _id: contactId });
+
+  if (!contact) {
+    throw new CustomError.BadRequestError(`No user with user id ${contactId}`);
+  }
+
+  res.status(StatusCodes.OK).json({ msg: `user deleted successfully` });
+};
+
 module.exports = {
   createContact,
   sendMessage,
   getAllContacts,
+  deleteContact,
 };

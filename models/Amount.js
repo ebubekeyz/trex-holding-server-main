@@ -15,7 +15,10 @@ const AmountSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: 'Coin',
     },
-
+    bonus: {
+      type: Number,
+      default: 0,
+    },
     user: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
