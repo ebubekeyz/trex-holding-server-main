@@ -107,6 +107,13 @@ const deleteUser = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ msg: `user deleted successfully` });
 };
+
+const deleteAllUsers = async (req, res) => {
+  const user = await User.deleteMany();
+
+  res.status(StatusCodes.OK).json({ msg: 'User successfully deleted' });
+};
+
 module.exports = {
   getAllUsers,
   getSingleUser,
@@ -114,5 +121,6 @@ module.exports = {
   updateUser,
   updateUserPassword,
   deleteUser,
+  deleteAllUsers,
   getRefId,
 };

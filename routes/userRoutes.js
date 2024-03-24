@@ -12,10 +12,14 @@ const {
   updateUser,
   updateUserPassword,
   deleteUser,
+  deleteAllUsers,
   getRefId,
 } = require('../controllers/userController');
 
-router.route('/').get(authenticateUser, getAllUsers);
+router
+  .route('/')
+  .get(authenticateUser, getAllUsers)
+  .delete(authenticateUser, deleteAllUsers);
 router.route('/showMe').get(authenticateUser, showCurrentUser);
 // router.route('/updateUser').patch(authenticateUser, updateUser);
 router.route('/updateUserPassword').patch(authenticateUser, updateUserPassword);
