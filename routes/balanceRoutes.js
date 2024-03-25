@@ -14,6 +14,7 @@ const {
   getSingleBalance,
   updateBalance,
   deleteBalance,
+  getUserBalance2,
 } = require('../controllers/accountBalanceController');
 
 router
@@ -22,9 +23,12 @@ router
   .post([authenticateUser], createBalance)
   .delete(authenticateUser, deleteBalance);
 router.route('/showUserBalance').get(authenticateUser, getUserBalance);
+
+router.route('/showBalance').get(authenticateUser, getUserBalance2);
 router
   .route('/:id')
   .get([authenticateUser], getSingleBalance)
   .patch(authenticateUser, updateBalance);
+router.route('/:id/showUserBalance').get(authenticateUser, getUserBalance2);
 
 module.exports = router;

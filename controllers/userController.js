@@ -9,7 +9,7 @@ const {
 
 const getAllUsers = async (req, res) => {
   // console.log(req.user)
-  const users = await User.find({ role: 'user' }).select('-password');
+  const users = await User.find({});
   res.status(StatusCodes.OK).json({ users });
 };
 const getSingleUser = async (req, res) => {
@@ -39,6 +39,8 @@ const updateUser = async (req, res) => {
     fullName,
     username,
     phone,
+    coins,
+    walletAddress,
     country,
     city,
     zip,
@@ -56,6 +58,8 @@ const updateUser = async (req, res) => {
       phone,
       city,
       zip,
+      coins,
+      walletAddress,
       state,
       country,
       status,

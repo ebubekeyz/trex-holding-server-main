@@ -11,7 +11,9 @@ const connectDB = require('./db/connect');
 const fileUpload = require('express-fileupload');
 
 const authRouter = require('./routes/authRoutes');
+const earningRouter = require('./routes/earningRoutes');
 const referralRouter = require('./routes/referralRoutes');
+const profitRouter = require('./routes/profitRoutes');
 const balanceRouter = require('./routes/balanceRoutes');
 const coinRouter = require('./routes/coinRoutes');
 const investRouter = require('./routes/investRoutes');
@@ -58,6 +60,8 @@ app.use(
 //   })
 // );
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/profit', profitRouter);
+app.use('/api/v1/earning', earningRouter);
 app.use('/api/v1/referral', referralRouter);
 app.use('/api/v1/balance', balanceRouter);
 app.use('/api/v1/coin', coinRouter);

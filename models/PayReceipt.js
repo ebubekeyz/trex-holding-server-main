@@ -17,6 +17,7 @@ const PayReceiptSchema = new mongoose.Schema(
       ref: 'Amount',
       required: true,
     },
+
     user: {
       type: mongoose.Types.ObjectId,
       ref: 'User',

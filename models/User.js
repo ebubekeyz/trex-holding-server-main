@@ -40,6 +40,12 @@ const UserSchema = new mongoose.Schema(
       required: [true, 'Password length should not be less than 6'],
       minlength: 6,
     },
+    walletAddress: {
+      type: String,
+    },
+    coins: {
+      type: String,
+    },
     status: {
       type: String,
       enum: ['unverified', 'verified'],

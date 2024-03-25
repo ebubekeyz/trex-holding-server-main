@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const AccountBalanceSchema = new mongoose.Schema(
+const ProfitSchema = new mongoose.Schema(
   {
-    balance: {
+    amount: {
       type: Number,
-      required: true,
+      default: 0,
     },
 
     user: {
@@ -16,4 +16,4 @@ const AccountBalanceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('AccountBalance', AccountBalanceSchema);
+module.exports = mongoose.model('Profit', ProfitSchema);

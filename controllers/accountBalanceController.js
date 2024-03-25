@@ -21,19 +21,38 @@ const getUserBalance = async (req, res) => {
   res.status(StatusCodes.OK).json({ balance, count: balance.length });
 };
 
+// const updateBalance = async (req, res) => {
+//   const { balance } = req.body;
+//   const { id: balanceId } = req.params;
+//   const balanceMain = await AccountBalance.findOne({ _id: balanceId });
+//   if (!balanceId) {
+//     throw new CustomError.BadRequestError(
+//       `No balance with id ${balanceId} exist`
+//     );
+//   }
+
+//   balanceMain.balance = balance;
+
+//   await balanceMain.save();
+//   res.status(StatusCodes.OK).json({ msg: 'Balance successfully updated' });
+// };
+
 const updateBalance = async (req, res) => {
   const { balance } = req.body;
   const { id: balanceId } = req.params;
-  const balanceMain = await AccountBalance.findOne({ _id: balanceId });
+  const balanceMain = await AccountBalance.findOneAndUpdate(
+    { _id: balanceId },
+    { balance },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
   if (!balanceId) {
     throw new CustomError.BadRequestError(
-      `No amount with id ${balanceId} exist`
+      `No balance with id ${balanceId} exist`
     );
   }
-
-  balanceMain.status = balance;
-
-  await balanceMain.save();
   res.status(StatusCodes.OK).json({ msg: 'Balance successfully updated' });
 };
 
@@ -46,6 +65,12 @@ const getSingleBalance = async (req, res) => {
     );
   }
   res.status(StatusCodes.OK).json({ balance });
+};
+
+const getUserBalance2 = async (req, res) => {
+  const { id: userId } = req.params;
+  const balance = await AccountBalance.find({ user: userId });
+  res.status(StatusCodes.OK).json({ balance, count: balance.length });
 };
 
 const deleteBalance = async (req, res) => {
@@ -61,4 +86,5 @@ module.exports = {
   updateBalance,
   getSingleBalance,
   deleteBalance,
+  getUserBalance2,
 };

@@ -32,4 +32,6 @@ router
   )
   .get([authenticateUser], getSinglePayReceipt);
 
+router.route('/:id/pay').get(authenticateUser, getUserPayReceipt);
+
 module.exports = router;

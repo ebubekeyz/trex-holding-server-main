@@ -62,6 +62,7 @@ const createWithdraw = async (req, res) => {
     subject: `Withdrawal Request Sent`,
     html: `<div style="background: green; padding: 1rem; color: white;">
 
+
     <p style="line-height: 1.5">Your withdrawal Request was successfully sent. Payment may take 15 minutes to process.</p>
 
     <P style="line-height: 1.5">Best Regards</P>
@@ -73,7 +74,10 @@ const createWithdraw = async (req, res) => {
 };
 
 const getAllWithdraw = async (req, res) => {
-  const withdraw = await Withdraw.find({});
+  const withdraw = await Withdraw.find({}).populate({
+    path: 'user',
+    select: 'username',
+  });
   let { withdrawalMethod, amount, withdrawalCode, status, currentBalance } =
     withdraw;
 
