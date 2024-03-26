@@ -162,6 +162,20 @@ const deleteAllPayReceipt = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'PayReceipt successfully deleted' });
 };
 
+const getUserPayReceipt2 = async (req, res) => {
+  const { id: userId } = req.params;
+  const payReceipt = await PayReceipt.find({ user: userId }).populate({
+    path: 'amount',
+    populate: {
+      path: 'coin',
+      select: 'coinType invest',
+      populate: { path: 'invest', select: 'plan percent days' },
+    },
+    select: 'amount status',
+  });
+  res.status(StatusCodes.OK).json({ payReceipt, count: payReceipt.length });
+};
+
 module.exports = {
   createPayReceipt,
   getAllPayReceipt,
@@ -170,4 +184,5 @@ module.exports = {
   getSinglePayReceipt,
   deletePayReceipt,
   deleteAllPayReceipt,
+  getUserPayReceipt2,
 };
