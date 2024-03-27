@@ -15,6 +15,7 @@ const {
   deleteWithdraw,
   getUserWithdraw,
   deleteAllWithdraw,
+  deleteUserWithdraw,
 } = require('../controllers/withdrawController');
 
 router
@@ -28,5 +29,9 @@ router
   .patch([authenticateUser], updateWithdraw)
   .delete([authenticateUser, authenticatePermissions('admin')], deleteWithdraw)
   .get([authenticateUser], getSingleWithdraw);
+
+router
+  .route('/:id/deleteUserWithdraw')
+  .delete(authenticateUser, deleteUserWithdraw);
 
 module.exports = router;

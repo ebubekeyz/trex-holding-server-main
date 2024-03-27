@@ -16,6 +16,7 @@ const {
   getUserEarning,
   deleteAllEarning,
   getUserEarning2,
+  deleteUserEarning,
 } = require('../controllers/earningController');
 
 router
@@ -31,5 +32,9 @@ router
   .get([authenticateUser], getSingleEarning);
 
 router.route('/:id/showUserEarning').get(authenticateUser, getUserEarning2);
+
+router
+  .route('/:id/deleteUserEarning')
+  .delete(authenticateUser, deleteUserEarning);
 
 module.exports = router;

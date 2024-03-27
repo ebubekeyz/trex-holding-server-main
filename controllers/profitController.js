@@ -72,7 +72,15 @@ const getUserProfit2 = async (req, res) => {
   res.status(StatusCodes.OK).json({ profit, count: profit.length });
 };
 
+const deleteUserProfit = async (req, res) => {
+  const { id: userId } = req.params;
+  const profit = await Profit.deleteMany({ user: userId });
+
+  res.status(StatusCodes.OK).json({ msg: 'profit successfully deleted' });
+};
+
 module.exports = {
+  deleteUserProfit,
   createProfit,
   getAllProfit,
   getUserProfit,

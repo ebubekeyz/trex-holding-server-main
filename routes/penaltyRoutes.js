@@ -17,6 +17,7 @@ const {
   deleteAllPenalty,
   getUserPenalty2,
   createPenaltyUser,
+  deleteUserPenalty,
 } = require('../controllers/penaltyController');
 
 router
@@ -32,5 +33,9 @@ router
   .get([authenticateUser], getSinglePenalty);
 
 router.route('/:id/showUserPenalty').get(authenticateUser, getUserPenalty2);
+
+router
+  .route('/:id/deleteUserPenalty')
+  .delete(authenticateUser, deleteUserPenalty);
 
 module.exports = router;

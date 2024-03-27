@@ -16,6 +16,7 @@ const {
   getUserProfit,
   deleteAllProfit,
   getUserProfit2,
+  deleteUserProfit,
 } = require('../controllers/profitController');
 
 router
@@ -31,5 +32,9 @@ router
   .get([authenticateUser], getSingleProfit);
 
 router.route('/:id/showUserProfit').get(authenticateUser, getUserProfit2);
+
+router
+  .route('/:id/deleteUserProfit')
+  .delete(authenticateUser, deleteUserProfit);
 
 module.exports = router;

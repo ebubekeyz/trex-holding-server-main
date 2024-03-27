@@ -73,7 +73,7 @@ const register = async (req, res) => {
 
   let info2 = await transporter.sendMail({
     from: `"Support" <support@trex-holding.com>`,
-    to: `${user.email}`,
+    to: `${email}`,
     subject: `Welcome to Trex-Holding.com`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 

@@ -73,7 +73,15 @@ const getUserEarning2 = async (req, res) => {
   res.status(StatusCodes.OK).json({ earning, count: earning.length });
 };
 
+const deleteUserEarning = async (req, res) => {
+  const { id: userId } = req.params;
+  const earning = await Earning.deleteMany({ user: userId });
+
+  res.status(StatusCodes.OK).json({ msg: 'Earning successfully deleted' });
+};
+
 module.exports = {
+  deleteUserEarning,
   createEarning,
   getAllEarning,
   getUserEarning,

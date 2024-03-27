@@ -73,7 +73,14 @@ const getUserPenalty2 = async (req, res) => {
   res.status(StatusCodes.OK).json({ penalty, count: penalty.length });
 };
 
+const deleteUserPenalty = async (req, res) => {
+  const { id: userId } = req.params;
+  const penalty = await Penalty.deleteMany({ user: userId });
+
+  res.status(StatusCodes.OK).json({ msg: 'profit successfully deleted' });
+};
 module.exports = {
+  deleteUserPenalty,
   createPenalty,
   getAllPenalty,
   getUserPenalty,

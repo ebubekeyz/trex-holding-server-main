@@ -73,7 +73,15 @@ const getUserPercentage2 = async (req, res) => {
   res.status(StatusCodes.OK).json({ percentage, count: percentage.length });
 };
 
+const deleteUserPercentage = async (req, res) => {
+  const { id: userId } = req.params;
+  const percentage = await Percentage.deleteMany({ user: userId });
+
+  res.status(StatusCodes.OK).json({ msg: 'percentage successfully deleted' });
+};
+
 module.exports = {
+  deleteUserPercentage,
   createPercentage,
   getAllPercentage,
   getUserPercentage,
