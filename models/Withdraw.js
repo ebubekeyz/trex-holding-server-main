@@ -14,7 +14,6 @@ const WithdrawSchema = new mongoose.Schema(
 
     withdrawalCode: {
       type: String,
-      default: uuidv4(),
     },
     walletAddress: {
       type: String,

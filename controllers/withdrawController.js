@@ -112,6 +112,8 @@ const updateWithdraw = async (req, res) => {
     );
   }
 
+  const date = new Date();
+  const year = date.getFullYear();
   let testAccount = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
@@ -129,7 +131,7 @@ const updateWithdraw = async (req, res) => {
     subject: `Withdrawal has been Sent to ${username}`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
- <img src="https://trex-holding-server.com//uploads/logo.png" style="width: 5rem; text-align: center" alt="logo"/>
+ <img src="https://trex-holding-server.com//uploads/logo.png" style="width: 15rem; text-align: center" alt="logo"/>
 
   <p style="font-weight: bold">WITHDRAWAL SUCCESSFUL</p>
      <p>Hello ${username}</p>
@@ -173,7 +175,7 @@ const updateWithdraw = async (req, res) => {
     subject: `Withdrawal has been Sent`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
- <img src="https://trex-holding-server.com//uploads/logo.png" style="width: 5rem; text-align: center" alt="logo"/>
+ <img src="https://trex-holding-server.com//uploads/logo.png" style="width: 15rem; text-align: center" alt="logo"/>
 
      <p style="font-weight: bold">WITHDRAWAL SUCCESSFUL</p>
      <p>Hello ${username}</p>
@@ -194,7 +196,7 @@ const updateWithdraw = async (req, res) => {
      <p>${walletAddress}</p>
 
 
-       <p style="font-weight: bold">Withdrawal Code</p>
+       <p style="font-weight: bold">Transaction Batch</p>
      <p>${withdrawalCode}</p>
 
 
@@ -205,10 +207,10 @@ const updateWithdraw = async (req, res) => {
 
        <p style="font-weight: bold">Warm Regards</p>
 
-     <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <a href="https://trex-holding.com">support@trex-holding.com</a></p>
+     <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <b>support@trex-holding.com</b></p>
 
       <p style="font-weight: bold">Payment Processed</p>
-    
+    <p>${year} <a href="https://trex-holding.com">https://trex-holding.com</a></p>
     </div>`,
   });
 
