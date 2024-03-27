@@ -62,7 +62,7 @@ const deleteEarning = async (req, res) => {
 };
 
 const deleteAllEarning = async (req, res) => {
-  const earning = await earning.deleteMany();
+  const earning = await Earning.deleteMany();
 
   res.status(StatusCodes.OK).json({ msg: 'Earning successfully deleted' });
 };
