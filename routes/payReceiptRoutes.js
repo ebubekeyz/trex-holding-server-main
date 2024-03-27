@@ -16,6 +16,7 @@ const {
   getUserPayReceipt,
   deleteAllPayReceipt,
   getUserPayReceipt2,
+  // deleteUserPayReceipt,
 } = require('../controllers/payReceiptController');
 
 router
@@ -36,5 +37,8 @@ router
 router
   .route('/:id/showUserPayReceipt')
   .get(authenticateUser, getUserPayReceipt2);
+// router
+//   .route('/:id/deleteUserPayReceipt')
+//   .delete(authenticateUser, deleteUserPayReceipt);
 
 module.exports = router;

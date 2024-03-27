@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 
-const AccountBalanceSchema = new mongoose.Schema(
+const PercentageSchema = new mongoose.Schema(
   {
-    balance: {
+    amount: {
       type: Number,
-      required: true,
-      min: 0,
+      default: 0,
     },
-
     user: {
       type: mongoose.Types.ObjectId,
       ref: 'User',
@@ -17,4 +15,4 @@ const AccountBalanceSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('AccountBalance', AccountBalanceSchema);
+module.exports = mongoose.model('Percentage', PercentageSchema);

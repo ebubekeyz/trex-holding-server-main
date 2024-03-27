@@ -156,6 +156,13 @@ const deletePayReceipt = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'PayReceipt successfully deleted' });
 };
 
+// const deleteUserPayReceipt = async (req, res) => {
+//   const { id: userId } = req.params;
+//   const payReceipt = await PayReceipt.deleteMany({ user: userId });
+
+//   res.status(StatusCodes.OK).json({ msg: 'PayReceipt successfully deleted' });
+// };
+
 const deleteAllPayReceipt = async (req, res) => {
   const payReceipt = await PayReceipt.deleteMany();
 
@@ -185,4 +192,5 @@ module.exports = {
   deletePayReceipt,
   deleteAllPayReceipt,
   getUserPayReceipt2,
+  // deleteUserPayReceipt,
 };

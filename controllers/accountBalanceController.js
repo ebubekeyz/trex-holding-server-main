@@ -79,6 +79,13 @@ const deleteBalance = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'Balance successfully deleted' });
 };
 
+const deleteUserBalance = async (req, res) => {
+  const { id: userId } = req.params;
+  const balance = await AccountBalance.deleteMany({ user: userId });
+
+  res.status(StatusCodes.OK).json({ msg: 'Balance successfully deleted' });
+};
+
 module.exports = {
   createBalance,
   getAllBalance,
@@ -87,4 +94,5 @@ module.exports = {
   getSingleBalance,
   deleteBalance,
   getUserBalance2,
+  deleteUserBalance,
 };
