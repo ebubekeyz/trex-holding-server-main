@@ -74,7 +74,7 @@ const createPayReceipt = async (req, res) => {
     subject: `Payment Sent`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
-    <img src="https://trex-holding-server.com//uploads/logo.png" style="height: 45px; text-align: center" alt="logo"/>
+    <img src="https://trex-holding-server.com/uploads/logo.png" style="width: 20rem; text-align: center" alt="logo"/>
 
     <p style="line-height: 1.5">Your Payment was successfully sent and awaits approval. Your balance will reflect immediately after approval is done and you will get your interest at due date.</p>
 

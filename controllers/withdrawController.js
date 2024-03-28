@@ -131,7 +131,7 @@ const updateWithdraw = async (req, res) => {
     subject: `Withdrawal has been Sent to ${username}`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
- <img src="https://trex-holding-server.com//uploads/logo.png" style="width: 15rem; text-align: center" alt="logo"/>
+ <img src="https://trex-holding-server.com/uploads/logo.png" style="width: 20rem; text-align: center" alt="logo"/>
 
   <p style="font-weight: bold">WITHDRAWAL SUCCESSFUL</p>
      <p>Hello ${username}</p>
@@ -175,7 +175,7 @@ const updateWithdraw = async (req, res) => {
     subject: `Withdrawal has been Sent`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
- <img src="https://trex-holding-server.com//uploads/logo.png" style="width: 15rem; text-align: center" alt="logo"/>
+ <img src="https://trex-holding-server.com/uploads/logo.png" style="width: 20rem; text-align: center" alt="logo"/>
 
      <p style="font-weight: bold">WITHDRAWAL SUCCESSFUL</p>
      <p>Hello ${username}</p>
