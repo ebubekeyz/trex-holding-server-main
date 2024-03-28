@@ -183,7 +183,15 @@ const getUserPayReceipt2 = async (req, res) => {
   res.status(StatusCodes.OK).json({ payReceipt, count: payReceipt.length });
 };
 
+const deleteUserPayReceipt = async (req, res) => {
+  const { id: userId } = req.params;
+  const payReceipt = await PayReceipt.deleteMany({ user: userId });
+
+  res.status(StatusCodes.OK).json({ msg: 'payReceipt successfully deleted' });
+};
+
 module.exports = {
+  deleteUserPayReceipt,
   createPayReceipt,
   getAllPayReceipt,
   getUserPayReceipt,
