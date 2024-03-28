@@ -55,7 +55,6 @@ app.use(
     origin: 'https://trex-holding.com',
   })
 );
-
 // app.use(
 //   cors({
 //     credentials: true,
