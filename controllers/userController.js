@@ -35,42 +35,11 @@ const getRefId = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const {
-    fullName,
-    username,
-    phone,
-    coins,
-    walletAddress,
-    country,
-    city,
-    zip,
-    state,
-    email,
-    status,
-    referralId,
-  } = req.body;
-
-  const user = await User.findOneAndUpdate(
-    { _id: req.user.userId },
-    {
-      fullName,
-      username,
-      phone,
-      city,
-      zip,
-      coins,
-      walletAddress,
-      state,
-      country,
-      status,
-      email,
-      referralId,
-    },
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
+  const { id: userId } = req.params;
+  const user = await User.findOneAndUpdate({ _id: userId }, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
   const tokenUser = createTokenUser(user);
 
