@@ -175,6 +175,8 @@ const logout = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'user logged out' });
 };
 
+// new
+
 const passwordReset = async (req, res) => {
   const { newPassword, password } = req.body;
 
