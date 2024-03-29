@@ -76,7 +76,7 @@ const createWithdraw = async (req, res) => {
 const getAllWithdraw = async (req, res) => {
   const withdraw = await Withdraw.find({}).populate({
     path: 'user',
-    select: 'username',
+    select: 'username email',
   });
   let { withdrawalMethod, amount, withdrawalCode, status, currentBalance } =
     withdraw;
@@ -99,13 +99,22 @@ const updateWithdraw = async (req, res) => {
       new: true,
       runValidators: true,
     }
-  );
-  const email = req.user.email;
-  const username = req.user.username;
+  ).populate({
+    path: 'user',
+    select: 'username email',
+  });
 
-  const { amount, withdrawalMethod, walletAddress, status, withdrawalCode } =
-    withdraw;
-  console.log(withdraw);
+  const {
+    amount,
+    withdrawalMethod,
+    walletAddress,
+    status,
+    withdrawalCode,
+    user: { username: username, email: email },
+  } = withdraw;
+
+  console.log(email);
+
   if (!withdraw) {
     throw new CustomError.BadRequestError(
       `No withdrawal with id ${withdrawId}`
@@ -171,7 +180,7 @@ const updateWithdraw = async (req, res) => {
 
   let info2 = await transporter.sendMail({
     from: `"Support" <support@trex-holding.com>`,
-    to: `${email}`,
+    to: `smartconcept.cp@gmail.com`,
     subject: `Withdrawal has been Sent`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
