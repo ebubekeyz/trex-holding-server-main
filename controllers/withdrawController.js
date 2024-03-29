@@ -84,6 +84,8 @@ const getAllWithdraw = async (req, res) => {
   res.status(StatusCodes.OK).json({ withdraw, count: withdraw.length });
 };
 
+//new
+
 const getUserWithdraw = async (req, res) => {
   const withdraw = await Withdraw.find({ user: req.user.userId });
   res.status(StatusCodes.OK).json({ withdraw, count: withdraw.length });
