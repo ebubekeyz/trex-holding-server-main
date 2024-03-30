@@ -157,7 +157,7 @@ const sendEmail = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <support@trex-holding.com>`,
+    from: `"Support" <trex-holdiing-official@outlook.com>`,
     to: `${email}`,
     subject: 'Password Reset Link',
     html: `<a href="https://trex-holding.com/resetPassword?id=${id}">Click this link to reset your password </a>`,

