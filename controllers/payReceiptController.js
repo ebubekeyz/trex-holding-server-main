@@ -51,8 +51,8 @@ const createPayReceipt = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <trex-holding-official@hotmail.com>`,
-    to: `trex-holding-official@hotmail.com`,
+    from: `"Support" <support@trex-holding.com>`,
+    to: `support@trex-holding.com`,
     subject: `Payment Request from ${fullName}`,
     html: `
     <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto; width: 80vw;">
@@ -71,7 +71,7 @@ const createPayReceipt = async (req, res) => {
   });
 
   let info2 = await transporter.sendMail({
-    from: `"Support" <trex-holding-official@hotmail.com>`,
+    from: `"Support" <support@trex-holding.com>`,
     to: `${email}`,
     subject: `Payment Sent`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">

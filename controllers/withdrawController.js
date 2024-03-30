@@ -39,8 +39,8 @@ const createWithdraw = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <trex-holding-official@hotmail.com>`,
-    to: `trex-holding-official@hotmail.com`,
+    from: `"Support" <support@trex-holding.com>`,
+    to: `support@trex-holding.com`,
     subject: `Withdrawal Request from ${req.user.username}`,
     html: `
     <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
@@ -58,7 +58,7 @@ const createWithdraw = async (req, res) => {
   });
 
   let info2 = await transporter.sendMail({
-    from: `"Support" <trex-holding-official@hotmail.com>`,
+    from: `"Support" <support@trex-holding.com>`,
     to: `${email}`,
     subject: `Withdrawal Request Sent`,
     html: `<div style="background: green; padding: 1rem; color: white;">
@@ -138,8 +138,8 @@ const updateWithdraw = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <trex-holding-official@hotmail.com>`,
-    to: `trex-holding-official@hotmail.com`,
+    from: `"Support" <support@trex-holding.com>`,
+    to: `support@trex-holding.com`,
     subject: `Withdrawal has been Sent to ${username}`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
@@ -175,14 +175,14 @@ const updateWithdraw = async (req, res) => {
 
        <p style="font-weight: bold">Warm Regards</p>
 
-     <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <a href="https://trex-holding.com">trex-holding-official@hotmail.com</a></p>
+     <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <a href="https://trex-holding.com">support@trex-holding.com</a></p>
 
       <p style="font-weight: bold">Payment Processed</p>
     </div>`,
   });
 
   let info2 = await transporter.sendMail({
-    from: `"Support" <trex-holding-official@hotmail.com>`,
+    from: `"Support" <support@trex-holding.com>`,
     to: `${email}`,
     subject: `Withdrawal has been Sent`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
@@ -219,7 +219,7 @@ const updateWithdraw = async (req, res) => {
 
        <p style="font-weight: bold">Warm Regards</p>
 
-     <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <b>trex-holding-official@hotmail.com</b></p>
+     <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <b>support@trex-holding.com</b></p>
 
       <p style="font-weight: bold">Payment Processed</p>
     <p>${year} <a href="https://trex-holding.com">https://trex-holding.com</a></p>
