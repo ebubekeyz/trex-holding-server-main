@@ -6,7 +6,7 @@ const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
 const nodemailer = require('nodemailer');
 
-//new
+//new17
 
 const createPayReceipt = async (req, res) => {
   const { amount: amountId } = req.body;

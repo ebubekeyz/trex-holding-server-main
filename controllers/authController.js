@@ -5,7 +5,7 @@ const { StatusCodes } = require('http-status-codes');
 const { attachCookiesToResponse, createTokenUser } = require('../utils');
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
-//new
+//new17
 
 const register = async (req, res) => {
   const {
