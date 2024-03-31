@@ -24,8 +24,6 @@ const attachCookiesToResponse = ({ res, user }) => {
   //   });
   // };
 
-  //new
-
   res.cookie('token', token, {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
