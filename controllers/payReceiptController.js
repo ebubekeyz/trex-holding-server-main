@@ -91,12 +91,12 @@ const getAllPayReceipt = async (req, res) => {
   const payReceipt = await PayReceipt.find({})
     .populate({
       path: 'amount',
+      select: 'amount status user updatedAt',
       populate: {
         path: 'coin',
-        select: 'coinType invest',
-        populate: { path: 'invest', select: 'plan percent days' },
+        select: 'coinType invest user',
+        populate: { path: 'invest', select: 'plan percent days user' },
       },
-      select: 'amount status',
     })
     .populate({
       path: 'user',
@@ -111,8 +111,8 @@ const getUserPayReceipt = async (req, res) => {
     path: 'amount',
     populate: {
       path: 'coin',
-      select: 'coinType invest',
-      populate: { path: 'invest', select: 'plan percent days' },
+      select: 'coinType invest user',
+      populate: { path: 'invest', select: 'plan percent days user' },
     },
     select: 'amount status',
   });
