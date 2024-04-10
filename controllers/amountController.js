@@ -44,7 +44,7 @@ const getSingleCoinAmount = async (req, res) => {
 };
 
 const updateAmount = async (req, res) => {
-  const { bonus, amount } = req.body;
+  const { bonus, amount, updatedAt } = req.body;
   const { id: amountId } = req.params;
   const amountMain = await Amount.findOne({ _id: amountId });
   if (!amountId) {
@@ -54,6 +54,7 @@ const updateAmount = async (req, res) => {
   }
 
   amountMain.bonus = bonus;
+  amountMain.updatedAt = updatedAt;
   amountMain.amount = amount;
 
   await amountMain.save();
