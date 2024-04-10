@@ -11,6 +11,7 @@ const connectDB = require('./db/connect');
 const fileUpload = require('express-fileupload');
 
 const authRouter = require('./routes/authRoutes');
+const walletRouter = require('./routes/walletRoutes');
 const penaltyRouter = require('./routes/penaltyRoutes');
 const percentageRouter = require('./routes/percentageRoutes');
 const earningRouter = require('./routes/earningRoutes');
@@ -77,6 +78,7 @@ app.use('/api/v1/amount', amountRouter);
 app.use('/api/v1/withdraw', withdrawRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/contact', contactRouter);
+app.use('/api/v1/wallet', walletRouter);
 
 app.get('/api/coins', async (req, res) => {
   const response = await fetch(
