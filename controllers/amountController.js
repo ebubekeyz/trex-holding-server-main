@@ -44,21 +44,17 @@ const getSingleCoinAmount = async (req, res) => {
 };
 
 const updateAmount = async (req, res) => {
-  const { bonus, amount, updatedAt, status } = req.body;
   const { id: amountId } = req.params;
-  const amountMain = await Amount.findOne({ _id: amountId });
+  const amount = await Amount.findOneAndUpdate({ _id: amountId }, req.body, {
+    new: true,
+    runValidators: true,
+  });
   if (!amountId) {
     throw new CustomError.BadRequestError(
       `No amount with id ${amountId} exist`
     );
   }
 
-  amountMain.bonus = bonus;
-  amountMain.status = status;
-  amountMain.updatedAt = updatedAt;
-  amountMain.amount = amount;
-
-  await amountMain.save();
   res.status(StatusCodes.OK).json({ msg: 'Amount successfully deposited' });
 };
 
