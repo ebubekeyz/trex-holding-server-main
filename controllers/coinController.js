@@ -34,6 +34,20 @@ const getUserCoin = async (req, res) => {
   res.status(StatusCodes.OK).json({ coin, count: coin.length });
 };
 
+const updateCoin = async (req, res) => {
+  const { coinType } = req.body;
+  const { id: coinId } = req.params;
+  const coinMain = await Coin.findOne({ _id: coinId });
+  if (!coinId) {
+    throw new CustomError.BadRequestError(`No amount with id ${coinId} exist`);
+  }
+
+  coinMain.coinType = coinType;
+
+  await coinMain.save();
+  res.status(StatusCodes.OK).json({ msg: 'Coin successfully updated' });
+};
+
 const getAllCoin = async (req, res) => {
   const coin = await Coin.find({})
     .populate({
@@ -79,7 +93,16 @@ const deleteAllCoin = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'Coin successfully deleted' });
 };
 
+const deleteUserCoin = async (req, res) => {
+  const { id: userId } = req.params;
+  const coin = await Coin.deleteMany({ user: userId });
+
+  res.status(StatusCodes.OK).json({ msg: 'coin successfully deleted' });
+};
+
 module.exports = {
+  updateCoin,
+  deleteUserCoin,
   createCoin,
   getAllCoin,
   getSingleCoin,

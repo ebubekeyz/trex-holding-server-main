@@ -9,6 +9,8 @@ const {
   deleteCoin,
   getSingleInvestCoin,
   deleteAllCoin,
+  deleteUserCoin,
+  updateCoin,
 } = require('../controllers/coinController');
 
 router
@@ -20,8 +22,11 @@ router
 router
   .route('/:id')
   .get(authenticateUser, getSingleCoin)
+  .patch([authenticateUser], updateCoin)
   .delete(authenticateUser, deleteCoin);
 
 router.route('/:id/coin').get(getSingleInvestCoin);
+
+router.route('/:id/deleteUserCoin').delete(authenticateUser, deleteUserCoin);
 
 module.exports = router;

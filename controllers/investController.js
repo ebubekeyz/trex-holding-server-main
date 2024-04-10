@@ -68,7 +68,15 @@ const deleteAllInvest = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'Invest successfully deleted' });
 };
 
+const deleteUserInvest = async (req, res) => {
+  const { id: userId } = req.params;
+  const invest = await Invest.deleteMany({ user: userId });
+
+  res.status(StatusCodes.OK).json({ msg: 'invest successfully deleted' });
+};
+
 module.exports = {
+  deleteUserInvest,
   createInvest,
   getAllInvest,
   getUserInvest,

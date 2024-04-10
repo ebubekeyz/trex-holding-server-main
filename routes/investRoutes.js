@@ -15,6 +15,7 @@ const {
   deleteInvest,
   getUserInvest,
   deleteAllInvest,
+  deleteUserInvest,
 } = require('../controllers/investController');
 
 router
@@ -28,5 +29,9 @@ router
   .patch([authenticateUser], updateInvest)
   .delete([authenticateUser, authenticatePermissions('admin')], deleteInvest)
   .get([authenticateUser], getSingleInvest);
+
+router
+  .route('/:id/deleteUserInvest')
+  .delete(authenticateUser, deleteUserInvest);
 
 module.exports = router;

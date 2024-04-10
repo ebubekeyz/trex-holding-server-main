@@ -17,6 +17,7 @@ const {
   getSingleCoinAmount,
   deleteAllAmount,
   getUserAmount2,
+  deleteUserAmount,
 } = require('../controllers/amountController');
 
 router
@@ -32,5 +33,9 @@ router
   .get([authenticateUser], getSingleAmount);
 
 router.route('/:id/showUserAmount').get(authenticateUser, getUserAmount2);
+
+router
+  .route('/:id/deleteUserAmount')
+  .delete(authenticateUser, deleteUserAmount);
 
 module.exports = router;

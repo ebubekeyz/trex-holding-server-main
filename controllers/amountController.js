@@ -94,6 +94,13 @@ const getUserAmount2 = async (req, res) => {
   res.status(StatusCodes.OK).json({ amount, count: amount.length });
 };
 
+const deleteUserAmount = async (req, res) => {
+  const { id: userId } = req.params;
+  const amount = await Amount.deleteMany({ user: userId });
+
+  res.status(StatusCodes.OK).json({ msg: 'amount successfully deleted' });
+};
+
 module.exports = {
   createAmount,
   getAllAmount,
@@ -104,4 +111,5 @@ module.exports = {
   deleteAmount,
   getSingleCoinAmount,
   deleteAllAmount,
+  deleteUserAmount,
 };
