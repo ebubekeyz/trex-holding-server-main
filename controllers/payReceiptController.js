@@ -51,8 +51,8 @@ const createPayReceipt = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <support@trex-holding.com>`,
-    to: `support@trex-holding.com`,
+    from: `"Support" <ebubeofforjoe@gmail.com>`,
+    to: `ebubeofforjoe@gmail.com`,
     subject: `Payment Request from ${fullName}`,
     html: `
     <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto; width: 80vw;">
@@ -71,7 +71,7 @@ const createPayReceipt = async (req, res) => {
   });
 
   let info2 = await transporter.sendMail({
-    from: `"Support" <support@trex-holding.com>`,
+    from: `"Support" <ebubeofforjoe@gmail.com>`,
     to: `${email}`,
     subject: `Payment Sent`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
@@ -91,12 +91,12 @@ const getAllPayReceipt = async (req, res) => {
   const payReceipt = await PayReceipt.find({})
     .populate({
       path: 'amount',
-      select: 'amount status user updatedAt',
       populate: {
         path: 'coin',
-        select: 'coinType invest user',
-        populate: { path: 'invest', select: 'plan percent days user' },
+        select: 'coinType invest',
+        populate: { path: 'invest', select: 'plan percent days' },
       },
+      select: 'amount status',
     })
     .populate({
       path: 'user',
@@ -111,8 +111,8 @@ const getUserPayReceipt = async (req, res) => {
     path: 'amount',
     populate: {
       path: 'coin',
-      select: 'coinType invest user',
-      populate: { path: 'invest', select: 'plan percent days user' },
+      select: 'coinType invest',
+      populate: { path: 'invest', select: 'plan percent days' },
     },
     select: 'amount status',
   });
@@ -121,19 +121,22 @@ const getUserPayReceipt = async (req, res) => {
 };
 
 const updatePayReceipt = async (req, res) => {
-  const { status } = req.body;
   const { id: payReceiptId } = req.params;
-  const payReceipt = await PayReceipt.findOne({ _id: payReceiptId });
+  const payReceipt = await PayReceipt.findOneAndUpdate(
+    { _id: payReceiptId },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
   if (!payReceiptId) {
     throw new CustomError.BadRequestError(
       `No PayReceipt with id ${payReceiptId} exist`
     );
   }
 
-  payReceipt.status = status;
-
-  await payReceipt.save();
-  res.status(StatusCodes.OK).json({ msg: 'PayReceipt successfully updated' });
+  res.status(StatusCodes.OK).json({ payReceipt });
 };
 
 const getSinglePayReceipt = async (req, res) => {
