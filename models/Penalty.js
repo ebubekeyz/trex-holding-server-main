@@ -11,6 +11,9 @@ const PenaltySchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
+    userIdNumber: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

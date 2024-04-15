@@ -11,6 +11,11 @@ const UserSchema = new mongoose.Schema(
     username: {
       type: String,
     },
+    balance: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
     email: {
       type: String,
       required: [true, 'Please provide your email'],

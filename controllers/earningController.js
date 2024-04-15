@@ -24,19 +24,18 @@ const getUserEarning = async (req, res) => {
 };
 
 const updateEarning = async (req, res) => {
-  const { amount } = req.body;
   const { id: earningId } = req.params;
-  const earning = await Earning.findOne({ _id: earningId });
+  const earning = await Earning.findOneAndUpdate({ _id: earningId }, req.body, {
+    new: true,
+    runValidators: true,
+  });
   if (!earningId) {
     throw new CustomError.BadRequestError(
-      `No PayReceipt with id ${earningId} exist`
+      `No Earning with id ${earningId} exist`
     );
   }
 
-  earning.amount = amount;
-
-  await earning.save();
-  res.status(StatusCodes.OK).json({ msg: 'Earning successfully updated' });
+  res.status(StatusCodes.OK).json({ earning });
 };
 
 const getSingleEarning = async (req, res) => {
@@ -79,8 +78,19 @@ const deleteUserEarning = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ msg: 'Earning successfully deleted' });
 };
+const deleteEarning2 = async (req, res) => {
+  const { id: earningId } = req.params;
+  const earning = await Earning.deleteMany({ userIdNumber: earningId });
+  if (!earningId) {
+    throw new CustomError.BadRequestError(
+      `No Earning with id ${earningId} exist`
+    );
+  }
+  res.status(StatusCodes.OK).json({ msg: 'Earning successfully deleted' });
+};
 
 module.exports = {
+  deleteEarning2,
   deleteUserEarning,
   createEarning,
   getAllEarning,

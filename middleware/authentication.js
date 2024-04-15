@@ -11,6 +11,7 @@ const authenticateUser = async (req, res, next) => {
     const {
       fullName,
       username,
+      balance,
       city,
       status,
       zip,
@@ -25,6 +26,7 @@ const authenticateUser = async (req, res, next) => {
     req.user = {
       fullName,
       username,
+      balance,
       city,
       zip,
       status,

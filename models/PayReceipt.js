@@ -21,6 +21,10 @@ const PayReceiptSchema = new mongoose.Schema(
       enum: ['pending', 'confirmed'],
       default: 'pending',
     },
+    addAmount: {
+      type: Number,
+      default: 0,
+    },
 
     amount: {
       type: mongoose.Types.ObjectId,

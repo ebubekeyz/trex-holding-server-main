@@ -11,6 +11,7 @@ const register = async (req, res) => {
   const {
     fullName,
     username,
+    balance,
     email,
     referralId,
     phone,
@@ -32,6 +33,7 @@ const register = async (req, res) => {
   const user = await User.create({
     fullName,
     username,
+    balance,
     email,
     status,
     referralId,

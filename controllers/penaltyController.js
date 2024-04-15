@@ -24,19 +24,18 @@ const getUserPenalty = async (req, res) => {
 };
 
 const updatePenalty = async (req, res) => {
-  const { amount } = req.body;
   const { id: penaltyId } = req.params;
-  const penalty = await Penalty.findOne({ _id: penaltyId });
+  const penalty = await Penalty.findOneAndUpdate({ _id: penaltyId }, req.body, {
+    new: true,
+    runValidators: true,
+  });
   if (!penaltyId) {
     throw new CustomError.BadRequestError(
-      `No PayReceipt with id ${penaltyId} exist`
+      `No penalty with id ${penaltyId} exist`
     );
   }
 
-  penalty.amount = amount;
-
-  await penalty.save();
-  res.status(StatusCodes.OK).json({ msg: 'Penalty successfully updated' });
+  res.status(StatusCodes.OK).json({ penalty });
 };
 
 const getSinglePenalty = async (req, res) => {
@@ -79,7 +78,19 @@ const deleteUserPenalty = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ msg: 'profit successfully deleted' });
 };
+
+const deletePenalty2 = async (req, res) => {
+  const { id: penaltyId } = req.params;
+  const penalty = await Penalty.deleteMany({ userIdNumber: penaltyId });
+  if (!penaltyId) {
+    throw new CustomError.BadRequestError(
+      `No Penalty with id ${penaltyId} exist`
+    );
+  }
+  res.status(StatusCodes.OK).json({ msg: 'penalty successfully deleted' });
+};
 module.exports = {
+  deletePenalty2,
   deleteUserPenalty,
   createPenalty,
   getAllPenalty,

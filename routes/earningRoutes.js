@@ -17,6 +17,7 @@ const {
   deleteAllEarning,
   getUserEarning2,
   deleteUserEarning,
+  deleteEarning2,
 } = require('../controllers/earningController');
 
 router
@@ -30,6 +31,10 @@ router
   .patch([authenticateUser], updateEarning)
   .delete([authenticateUser, authenticatePermissions('admin')], deleteEarning)
   .get([authenticateUser], getSingleEarning);
+
+router
+  .route('/:id/deleteUserIdNumber')
+  .delete([authenticateUser], deleteEarning2);
 
 router.route('/:id/showUserEarning').get(authenticateUser, getUserEarning2);
 

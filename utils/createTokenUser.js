@@ -2,6 +2,7 @@ const createTokenUser = (user) => {
   return {
     fullName: user.fullName,
     username: user.username,
+    balance: user.balance,
     country: user.country,
     email: user.email,
     city: user.city,
