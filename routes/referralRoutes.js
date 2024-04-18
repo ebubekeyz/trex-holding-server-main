@@ -6,6 +6,7 @@ const {
   getAllReferral,
   getUserReferral,
   deleteAllReferral,
+  updateReferral,
 } = require('../controllers/referralController');
 
 router
@@ -13,6 +14,8 @@ router
   .post(authenticateUser, createReferral)
   .get(authenticateUser, getAllReferral)
   .delete(authenticateUser, deleteAllReferral);
+
+router.route('/:id').patch([authenticateUser], updateReferral);
 
 router.route('/showUserReferral').get(authenticateUser, getUserReferral);
 

@@ -9,7 +9,24 @@ const createReferral = async (req, res) => {
 
   res.status(StatusCodes.CREATED).json({ referral });
 };
+const updateReferral = async (req, res) => {
+  const { id: referralId } = req.params;
+  const referral = await Referral.findOneAndUpdate(
+    { _id: referralId },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  if (!referralId) {
+    throw new CustomError.BadRequestError(
+      `No referral with id ${referralId} exist`
+    );
+  }
 
+  res.status(StatusCodes.OK).json({ referral });
+};
 const getUserReferral = async (req, res) => {
   const referral = await Referral.find({ user: req.user.userId });
   res.status(StatusCodes.OK).json({ referral, count: referral.length });
@@ -32,6 +49,7 @@ const deleteAllReferral = async (req, res) => {
 
 module.exports = {
   createReferral,
+  updateReferral,
   getAllReferral,
   getUserReferral,
   deleteAllReferral,

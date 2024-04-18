@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const ReferralSchema = new mongoose.Schema(
   {
-    refId: {
-      type: String,
-      required: true,
+    amount: {
+      type: Number,
+      default: 0,
     },
     user: {
       type: mongoose.Types.ObjectId,
