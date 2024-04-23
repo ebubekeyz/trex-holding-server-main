@@ -8,24 +8,24 @@ const nodemailer = require('nodemailer');
 
 const createWithdraw = async (req, res) => {
   const { fullName, email } = req.user;
-  console.log(fullName);
+  // console.log(fullName);
   req.body.user = req.user.userId;
   const withdraw = await Withdraw.create(req.body);
-  const {
-    withdrawalMethod,
-    amount,
-    withdrawalCode,
-    status,
-    currentBalance,
-    walletAddress,
-  } = withdraw;
+  // const {
+  //   withdrawalMethod,
+  //   amount,
+  //   withdrawalCode,
+  //   status,
+  //   currentBalance,
+  //   walletAddress,
+  // } = withdraw;
 
-  console.log(amount);
+  // console.log(amount);
 
-  const fullName = await Withdraw.findOneAndRemove({ user: req.user.fullName });
-  console.log(fullName);
-  const email = await Withdraw.findOne({ user: req.user.email });
-  console.log(email);
+  // const fullName = await Withdraw.findOneAndRemove({ user: req.user.fullName });
+  // console.log(fullName);
+  // const email = await Withdraw.findOne({ user: req.user.email });
+  // console.log(email);
 
   // let testAccount = await nodemailer.createTestAccount();
 
