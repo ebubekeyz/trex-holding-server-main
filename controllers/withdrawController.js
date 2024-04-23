@@ -124,105 +124,99 @@ const updateWithdraw = async (req, res) => {
 
   const date = new Date();
   const year = date.getFullYear();
-  let testAccount = await nodemailer.createTestAccount();
+  //   let testAccount = await nodemailer.createTestAccount();
 
-  const transporter = nodemailer.createTransport({
-    host: process.env.GMAIL_HOST,
-    port: process.env.GMAIL_PORT,
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
-    },
-  });
+  //   const transporter = nodemailer.createTransport({
+  //     host: process.env.GMAIL_HOST,
+  //     port: process.env.GMAIL_PORT,
+  //     auth: {
+  //       user: process.env.GMAIL_USER,
+  //       pass: process.env.GMAIL_PASS,
+  //     },
+  //   });
 
-  let info = await transporter.sendMail({
-    from: `"Support" <support@trex-holding.com>`,
-    to: `support@trex-holding.com`,
-    subject: `Withdrawal has been Sent to ${username}`,
-    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+  //   let info = await transporter.sendMail({
+  //     from: `"Support" <support@trex-holding.com>`,
+  //     to: `support@trex-holding.com`,
+  //     subject: `Withdrawal has been Sent to ${username}`,
+  //     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
- <img src="https://trex-holding-server.com/uploads/logo.png" style="width: 20rem; text-align: center" alt="logo"/>
+  //  <img src="https://trex-holding-server.com/uploads/logo.png" style="width: 20rem; text-align: center" alt="logo"/>
 
-  <p style="font-weight: bold">WITHDRAWAL SUCCESSFUL</p>
-     <p>Hello ${username}</p>
+  //   <p style="font-weight: bold">WITHDRAWAL SUCCESSFUL</p>
+  //      <p>Hello ${username}</p>
 
-      <p style="font-weight: bold">Your withdrawal has been sent to the details you provided below</p>
+  //       <p style="font-weight: bold">Your withdrawal has been sent to the details you provided below</p>
 
-    <p style="font-weight: bold">Username</p>
-     <p>${username}</p>
+  //     <p style="font-weight: bold">Username</p>
+  //      <p>${username}</p>
 
-    <p style="font-weight: bold">Amount</p>
-     <p>€${amount}</p>
+  //     <p style="font-weight: bold">Amount</p>
+  //      <p>€${amount}</p>
 
+  //      <p style="font-weight: bold">Coin</p>
+  //      <p>${withdrawalMethod}</p>
 
-     <p style="font-weight: bold">Coin</p>
-     <p>${withdrawalMethod}</p>
+  //        <p style="font-weight: bold">Wallet Address</p>
+  //      <p>${walletAddress}</p>
 
-       <p style="font-weight: bold">Wallet Address</p>
-     <p>${walletAddress}</p>
+  //        <p style="font-weight: bold">Withdrawal Code</p>
+  //      <p>${withdrawalCode}</p>
 
+  //      <p style="font-weight: bold">Status</p>
+  //      <p>${status}</p>
 
-       <p style="font-weight: bold">Withdrawal Code</p>
-     <p>${withdrawalCode}</p>
+  //       <p style="font-weight: bold">We are glad to serve you and we look forward to partnering with you to achieve more financial exploits. enjoy your earnings and let our bonding grow stronger.</p>
 
+  //        <p style="font-weight: bold">Warm Regards</p>
 
-     <p style="font-weight: bold">Status</p>
-     <p>${status}</p>
+  //      <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <a href="https://trex-holding.com">support@trex-holding.com</a></p>
 
-      <p style="font-weight: bold">We are glad to serve you and we look forward to partnering with you to achieve more financial exploits. enjoy your earnings and let our bonding grow stronger.</p>
+  //       <p style="font-weight: bold">Payment Processed</p>
+  //     </div>`,
+  //   });
 
-       <p style="font-weight: bold">Warm Regards</p>
+  //   let info2 = await transporter.sendMail({
+  //     from: `"Support" <support@trex-holding.com>`,
+  //     to: `${email}`,
+  //     subject: `Withdrawal has been Sent`,
+  //     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
-     <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <a href="https://trex-holding.com">support@trex-holding.com</a></p>
+  //  <img src="https://trex-holding-server.com/uploads/logo.png" style="width: 20rem; text-align: center" alt="logo"/>
 
-      <p style="font-weight: bold">Payment Processed</p>
-    </div>`,
-  });
+  //      <p style="font-weight: bold">WITHDRAWAL SUCCESSFUL</p>
+  //      <p>Hello ${username}</p>
 
-  let info2 = await transporter.sendMail({
-    from: `"Support" <support@trex-holding.com>`,
-    to: `${email}`,
-    subject: `Withdrawal has been Sent`,
-    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+  //       <p style="font-weight: bold">Your withdrawal has been sent to the details you provided below</p>
 
- <img src="https://trex-holding-server.com/uploads/logo.png" style="width: 20rem; text-align: center" alt="logo"/>
+  //     <p style="font-weight: bold">Username</p>
+  //      <p>${username}</p>
 
-     <p style="font-weight: bold">WITHDRAWAL SUCCESSFUL</p>
-     <p>Hello ${username}</p>
+  //     <p style="font-weight: bold">Amount</p>
+  //      <p>€${amount}</p>
 
-      <p style="font-weight: bold">Your withdrawal has been sent to the details you provided below</p>
+  //      <p style="font-weight: bold">Coin</p>
+  //      <p>${withdrawalMethod}</p>
 
-    <p style="font-weight: bold">Username</p>
-     <p>${username}</p>
+  //        <p style="font-weight: bold">Wallet Address</p>
+  //      <p>${walletAddress}</p>
 
-    <p style="font-weight: bold">Amount</p>
-     <p>€${amount}</p>
+  //        <p style="font-weight: bold">Transaction Batch</p>
+  //      <p>${withdrawalCode}</p>
 
+  //      <p style="font-weight: bold">Status</p>
+  //      <p>${status}</p>
 
-     <p style="font-weight: bold">Coin</p>
-     <p>${withdrawalMethod}</p>
+  //       <p style="font-weight: bold">We are glad to serve you and we look forward to partnering with you to achieve more financial exploits. enjoy your earnings and let our bonding grow stronger.</p>
 
-       <p style="font-weight: bold">Wallet Address</p>
-     <p>${walletAddress}</p>
+  //        <p style="font-weight: bold">Warm Regards</p>
 
+  //      <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <b>support@trex-holding.com</b></p>
 
-       <p style="font-weight: bold">Transaction Batch</p>
-     <p>${withdrawalCode}</p>
-
-
-     <p style="font-weight: bold">Status</p>
-     <p>${status}</p>
-
-      <p style="font-weight: bold">We are glad to serve you and we look forward to partnering with you to achieve more financial exploits. enjoy your earnings and let our bonding grow stronger.</p>
-
-       <p style="font-weight: bold">Warm Regards</p>
-
-     <p style="font-weight: bold">This is an auto generated email, please do not reply to this email. For enquiry and questions, kindly contact our live support service on our website or contact us at <b>support@trex-holding.com</b></p>
-
-      <p style="font-weight: bold">Payment Processed</p>
-    <p>${year} <a href="https://trex-holding.com">https://trex-holding.com</a></p>
-    </div>`,
-  });
+  //       <p style="font-weight: bold">Payment Processed</p>
+  //     <p>${year} <a href="https://trex-holding.com">https://trex-holding.com</a></p>
+  //     </div>`,
+  //   });
 
   res.status(StatusCodes.OK).json({ withdraw });
 };
