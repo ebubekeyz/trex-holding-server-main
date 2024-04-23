@@ -22,10 +22,10 @@ const createWithdraw = async (req, res) => {
 
   console.log(amount);
 
-  // const fullName = await Withdraw.findOneAndRemove({ user: req.user.fullName });
-  // console.log(fullName);
-  // const email = await Withdraw.findOne({ user: req.user.email });
-  // console.log(email);
+  const fullName = await Withdraw.findOneAndRemove({ user: req.user.fullName });
+  console.log(fullName);
+  const email = await Withdraw.findOne({ user: req.user.email });
+  console.log(email);
 
   // let testAccount = await nodemailer.createTestAccount();
 
