@@ -39,49 +39,49 @@ const createPayReceipt = async (req, res) => {
   const email = req.user.email;
   const fullName = req.user.fullName;
 
-  // let testAccount = await nodemailer.createTestAccount();
+  let testAccount = await nodemailer.createTestAccount();
 
-  // const transporter = nodemailer.createTransport({
-  //   host: process.env.GMAIL_HOST,
-  //   port: process.env.GMAIL_PORT,
-  //   auth: {
-  //     user: process.env.GMAIL_USER,
-  //     pass: process.env.GMAIL_PASS,
-  //   },
-  // });
+  const transporter = nodemailer.createTransport({
+    host: process.env.GMAIL_HOST,
+    port: process.env.GMAIL_PORT,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
 
-  // let info = await transporter.sendMail({
-  //   from: `"Support" <support@trex-holding.com>`,
-  //   to: `support@trex-holding.com`,
-  //   subject: `Payment Request from ${fullName}`,
-  //   html: `
-  //   <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto; width: 80vw;">
+  let info = await transporter.sendMail({
+    from: `"Support" <trex-holding.official@gmail.com>`,
+    to: `trex-holding.official@gmail.com`,
+    subject: `Payment Request from ${fullName}`,
+    html: `
+    <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto; width: 80vw;">
 
-  //    <p ><span  style="font-weight: bold;">Status: </span><span>${stat}</span></p>
-  //    <p><span style="font-weight: bold;">Receipt: </span><span><img src="https://trex-holding-server.com/${receipt}" style="width:5rem;object-fit:contain; " /></span></p>
+     <p ><span  style="font-weight: bold;">Status: </span><span>${stat}</span></p>
+     <p><span style="font-weight: bold;">Receipt: </span><span><img src="https://trex-holding-server.com/${receipt}" style="width:5rem;object-fit:contain; " /></span></p>
 
-  //      <p><span style="font-weight: bold">Amount: </span><span>€${amt}</span></p>
-  //       <p><span style="font-weight: bold">Plan: </span><span>${plan}</span></p>
-  //       <p><span style="font-weight: bold">Coin: </span><span>${coinType}</span></p>
+       <p><span style="font-weight: bold">Amount: </span><span>€${amt}</span></p>
+        <p><span style="font-weight: bold">Plan: </span><span>${plan}</span></p>
+        <p><span style="font-weight: bold">Coin: </span><span>${coinType}</span></p>
 
-  //      <p style="font-weight: bold">Visit your Dashboard to approve Request</p>
-  //    </div>`,
-  // });
+       <p style="font-weight: bold">Visit your Dashboard to approve Request</p>
+     </div>`,
+  });
 
-  // let info2 = await transporter.sendMail({
-  //   from: `"Support" <support@trex-holding.com>`,
-  //   to: `${email}`,
-  //   subject: `Payment Sent`,
-  //   html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+  let info2 = await transporter.sendMail({
+    from: `"Support" <trex-holding.official@gmail.com>`,
+    to: `${email}`,
+    subject: `Payment Sent`,
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
 
-  //   <img src="https://trex-holding-server.com/uploads/logo.png" style="width: 20rem; text-align: center" alt="logo"/>
+    <img src="https://trex-holding-server.com/uploads/logo.png" style="width: 20rem; text-align: center" alt="logo"/>
 
-  //   <p style="line-height: 1.5">Your Payment was successfully sent and awaits approval. Your balance will reflect immediately after approval is done and you will get your interest at due date.</p>
+    <p style="line-height: 1.5">Your Payment was successfully sent and awaits approval. Your balance will reflect immediately after approval is done and you will get your interest at due date.</p>
 
-  //   <P style="line-height: 1.5">Best Regards</P>
-  //   <P style="line-height: 1.5">Trex-Holding Team</P>
-  //   </div>`,
-  // });
+    <P style="line-height: 1.5">Best Regards</P>
+    <P style="line-height: 1.5">Trex-Holding Team</P>
+    </div>`,
+  });
   res.status(StatusCodes.CREATED).json({ payReceipt });
 };
 

