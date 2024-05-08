@@ -62,8 +62,8 @@ const register = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <trex-holding.official@gmail.com>`,
-    to: `trex-holding.official@gmail.com`,
+    from: `"Support" <trex.holding.official@gmail.com>`,
+    to: `trex.holding.official@gmail.com`,
     subject: 'New User Registration Alert',
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
      <p style="line-height: 1.5"><span>FullName: </span><span>${fullName}</span></p>
@@ -75,7 +75,7 @@ const register = async (req, res) => {
   });
 
   let info2 = await transporter.sendMail({
-    from: `"Support" <trex-holding.official@gmail.com>`,
+    from: `"Support" <trex.holding.official@gmail.com>`,
     to: `${email}`,
     subject: `Welcome to Trex-Holding.com`,
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
@@ -136,8 +136,8 @@ const login = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <trex-holding.official@gmail.com>`,
-    to: `trex-holding.official@gmail.com>`,
+    from: `"Support" <trex.holding.official@gmail.com>`,
+    to: `trex.holding.official@gmail.com>`,
     subject: 'Login Alert',
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
      <p style="line-height: 1.5"><span>FullName: </span><span>${username}</span></p>
@@ -146,7 +146,7 @@ const login = async (req, res) => {
   });
 
   let info2 = await transporter.sendMail({
-    from: `"Support" <trex-holding.official@gmail.com>`,
+    from: `"Support" <trex.holding.official@gmail.com>`,
     to: `${user.email}`,
     subject: `Welcome ${username} to trex-holding.com`,
     html: `<div style="background: green; padding: 1rem; color: white;">We trust you would have a good experience with us..</div>`,
@@ -224,8 +224,8 @@ const passwordReset = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <trex-holding.official@gmail.com>`,
-    to: `trex-holding.official@gmail.com`,
+    from: `"Support" <trex.holding.official@gmail.com>`,
+    to: `trex.holding.official@gmail.com`,
     subject: 'Password Reset Alert',
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
   <p style="line-height: 1.5"><span>Username: </span><span>${user.username}</span></p>
@@ -234,7 +234,7 @@ const passwordReset = async (req, res) => {
   });
 
   let info2 = await transporter.sendMail({
-    from: `"Support" <strex-holding.official@gmail.com>`,
+    from: `"Support" <strex.holding.official@gmail.com>`,
     to: `${user.email}`,
     subject: 'Password Reset',
     html: `<div style="background: rgb(241, 234, 234); border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); padding: 2rem; text-align: center;margin: 1rem auto;">
@@ -275,7 +275,7 @@ const sendEmail = async (req, res) => {
   });
 
   let info = await transporter.sendMail({
-    from: `"Support" <trex-holding.official@gmail.com>`,
+    from: `"Support" <trex.holding.official@gmail.com>`,
     to: `${email}`,
     subject: 'Password Reset Link',
     html: `
